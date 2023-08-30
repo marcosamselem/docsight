@@ -1,3 +1,5 @@
 class DoctorsController < ApplicationController
-  # ksjdhgnvbsijdkfvjicnsedjcfvsiejdnfvjhsebndfijvcsnedfiucjwnsbedfziujewsndziu
+  def index
+    @doctors = Doctor.all
+  end
 end
