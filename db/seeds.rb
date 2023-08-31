@@ -43,11 +43,12 @@ HOSPITALS = [
   ["Royal Brompton Hospital", "Sydney Street, London, Greater London, SW3 6NP"],
   ["Lister Hospital", "Chelsea Bridge Road, London, Greater London, SW1W 8RH"]
 ]
+HOSPITALS.each do |hosp|
+  Location.create!(name: hosp[0], address: hosp[1])
+  puts "created #{Location.last.name} hospital"
+end
 
 100.times do
-  hosp_samp = HOSPITALS.sample
-  Location.create!(name: hosp_samp[0], address: hosp_samp[1])
-  puts "created #{Location.last.name} hospital"
   User.create!(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
