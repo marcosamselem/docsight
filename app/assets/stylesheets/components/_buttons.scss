@@ -1,0 +1,13 @@
+.main-btn {
+    background-color: #4a5069;
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+        background-color: #535765;
+    }
+}
