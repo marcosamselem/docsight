@@ -1,2 +1,83 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<section class="hero">
+    <h1 class="title">DOCSIGHT</h1>
+    <div class="search-form">
+        <form class="form" action="search-results.html" method="get">
+            <input type="text" name="q" placeholder="Search...">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
+  
+<section class="home-bg mt-5">
+  <p class="text-center pt-4"> Let's get you a doc who gets you </p>
+    <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card">
+          <%# <img src="image-url" class="card-img-top" alt="Card Image"> %>
+          <div class="card-body">
+            <h5 class="card-title">Fastest</h5>
+            <p class="card-text">Fastest possible connection to</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <%# <img src="image-url" class="card-img-top" alt="Card Image"> %>
+          <div class="card-body">
+            <h5 class="card-title"> Leave Reviews </h5>
+            <p class="card-text">Leave Reviews</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <%# <img src="image-url" class="card-img-top" alt="Card Image"> %>
+          <div class="card-body">
+            <h5 class="card-title"> Mission  </h5>
+            <p class="card-text"> Mission </p>
+            <a href="#" class="btn btn-primary"> Read More </a>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+</section>
+
+<section class="home-bg mt-5">
+  <div class="container px-3">
+    <div class="bottom-card">
+      <div class="row justify-content-center">
+        <div class="col col-md-4">
+          <div class="card-png-top">
+            <%= image_tag "doctor.png", class: "", alt: "Card png" %>
+          </div>      
+        </div>
+        <div class="col col-md-4">
+          <div class="bottom-card-info">
+            <h3> Are you a provider interested in reaching more patients?</h3>
+            <ul>
+              <li><p>Reach patients in your area looking for a new provider</p></li>
+              <li><p>Fill last-minute openings in your schedule</p></li>
+              <li><p>FStrengthen your online reputation with verified reviews</p></li>
+            </ul>
+            <a href="#" class="btn btn-primary"> Read More </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ 
+
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2023 DOCSIGHT. All rights reserved.</p>
+    </div>
+  </footer>

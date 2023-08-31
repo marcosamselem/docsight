@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_145842) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_29_153539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,6 +75,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_145842) do
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  create_table "procedure_doctors", force: :cascade do |t|
+    t.bigint "doctor_id", null: false
+    t.bigint "procedure_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_procedure_doctors_on_doctor_id"
+    t.index ["procedure_id"], name: "index_procedure_doctors_on_procedure_id"
+  end
+
   create_table "procedures", force: :cascade do |t|
     t.string "name"
     t.bigint "doctor_id", null: false
@@ -128,6 +137,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_145842) do
   add_foreign_key "appointments", "locations"
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "procedures"
+  add_foreign_key "procedure_doctors", "doctors"
+  add_foreign_key "procedure_doctors", "procedures"
   add_foreign_key "procedures", "doctors"
   add_foreign_key "qualifications", "doctors"
   add_foreign_key "reviews", "appointments"
