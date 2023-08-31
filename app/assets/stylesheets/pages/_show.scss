@@ -1,34 +1,110 @@
-.card-product {
+.show-page-card {
   overflow: hidden;
   width: 820px;
   height: 304px;
-  background: white;
+  background: #DDDDDD;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
-.card-product img {
-  height: 113;
+.show-page-photo-card{
+width: 200px;
+height: 200px;
+background-color: #EEEEEE;
+margin-left: 20px;
+text-align: center;
+img {
   width: 144px;
-  object-fit: cover;
+  height: 113px;
+
+}
+}
+
+.show-page-photo-card h2{
+  font-size: large;
+  }
+
+  .show-page-photo-card p{
+    font-size: small;
+    }
+
+.show-page-calander-card{
+  width: 502px;
+  height: 211px;
+  background-color: beige;
   margin-left: 20px;
-}
 
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
+  }
 
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
+  .show-page-calander-card h2{
+  text-align: center;
+    }
 
-.card-product .card-product-infos {
-  padding: 16px;
-}
+  .calander{
+    text-align: center;
+  }
+
+  .bio-card {
+    overflow: hidden;
+    width: 820px;
+    height: 290px;
+    background: #DDDDDD;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    background-color: #4A4E69;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 12px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+
+  .button:hover {
+    background-color:#40e70d;
+    color: white;
+  }
+
+
+
+// .img {
+//   height: 113px;
+//   width: 144px;
+//   object-fit: cover;
+// }
+
+// .photo-card h2 {
+//   font-size: 16px;
+//   font-weight: bold;
+//   margin: 0;
+// }
+
+// .photo-card p {
+//   font-size: 12px;
+//   line-height: 1.4;
+//   opacity: .7;
+//   margin-bottom: 0;
+//   margin-top: 8px;
+// }
+
+// .card-product .card-product-infos {
+//   padding: 10px;
+//   display: flex;
+//   // justify-content: space-between;
+//   // align-items: flex-end;
+//   flex-direction: column;
+//   // position: relative;
+// }

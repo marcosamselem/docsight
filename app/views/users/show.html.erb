@@ -1,12 +1,48 @@
 <h1>Show page for users_controller</h1>
 
-<div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="card-product-infos">
-    <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-    <p>Location <strong>relevant info</strong> only.</p>
+<div class="container">
+  <div class="show-page-card">
+    <div class="show-page-photo-card">
+      <%= image_tag @user.image_url %>
+      <p></p>
+      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <p>Location</p>
+      <a href="#" class="button">Profile</a>
+    </div>
+
+    <div class="show-page-calander-card">
+      <h2>Month?</h2>
+        <div class="calander">Calander--Here</div>
+    </div>
   </div>
+
+<div class="bio-card">
+<p>Bio-card</p>
 </div>
+
+<div class="bio-card">
+<p>Pricing</p>
+</div>
+
+<div class="bio-card">
+<p>Location</p>
+</div>
+
+<div class="bio-card">
+<p>Review</p>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
 
 
 
