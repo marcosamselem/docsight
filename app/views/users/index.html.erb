@@ -1,0 +1,9 @@
+
+<%= if user.role == "doctor" %>
+      <% @users.each do |user| %>
+      <%= user.first_name%>
+      <%= user.last_name%>
+      <%# <%= user.locations.name%>
+      <%# <%= user.location.address %>
+  <% end %>
+<% end %>
