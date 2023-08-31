@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def index
     @doctors = User.where(role: "doctor")
   end
-
+  
   def new
     @patient = User.new
   end
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+  
   private
 
   def params_user
