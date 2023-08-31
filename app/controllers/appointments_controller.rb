@@ -9,12 +9,18 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     @appointment.doctor = @doctor
+    @appointment.location = @doctor.locations.first
     @appointment.patient = current_user
-    raise
-    # @appointment.patient = @user
-    # @appointment.doctor = @doctor
+    if @appointment.save
+      redirect_to appointment_path(@appointment)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
+  def show
+  end
+  
   private
 
   def set_doctor
