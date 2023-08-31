@@ -39,6 +39,7 @@
 .search-form input[type="text"] {
     padding: 5px;
     background-color: #d9d9d9;
+    border-radius: 5px;
 }
   
 .search-form button {
@@ -118,4 +119,13 @@
 
 .col.col-md-4 {
   width: 43.333333%;
+}
+
+.home-avatar {
+  // width: 250px;
+  text-align: center;
+  img {
+    border-radius: 50%;
+    width: 150px;
+  }
 }
