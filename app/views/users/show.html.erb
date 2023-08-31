@@ -1,0 +1,52 @@
+<h1>Show page for users_controller</h1>
+
+<div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+    <p>Location <strong>relevant info</strong> only.</p>
+  </div>
+</div>
+
+
+
+
+<%# -------TEST-----CODE---------------------------------DW---- %>
+<p> Email: <%= @user.email %></p>
+<p> Bio: <%= @user.bio %></p>
+<p> Speciality: <%= @user.specialty %></p>
+<p> Image: <%= @user.image_url %></p>
+<p> Role: <%= @user.role %></p>
+<p> First name: <%= @user.first_name %></p>
+<p> Last name: <%= @user.last_name %></p>
+<p>Phone Number: <%= @user.phone_number %></p>
+<p> Gender: <%= @user.gender %></p>
+<p> DOB: <%= @user.date_of_birth %></p>
+<p> Past Intervention: <%= @user.past_interventions %></p>
+<p> Allergies: <%= @user.allergies %></p>
+<p> Insurance:n<%= @user.insurance_provider %></p>
+
+<table class="table table-success">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= @user.first_name %></td>
+      <td><%= @user.last_name %></td>
+      <td><%= @user.email %></td>
+      <td><%= @user.date_of_birth %></td>
+      <td><%= @user.gender %></td>
+    </tr>
+
+  </tbody>
+</table>
+<%# ---------DW----TEST CODE END--------- %>
