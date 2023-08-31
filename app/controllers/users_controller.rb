@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @doctors = User.where(role: "doctor")
   end
 end

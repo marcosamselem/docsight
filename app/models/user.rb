@@ -18,6 +18,8 @@ class User < ApplicationRecord
   validates :role, presence: true
   validates :past_interventions, presence: true, if: :user_is_patient?
 
+  enum :role, [:patient, :doctor]
+
   private
 
   def user_is_patient?

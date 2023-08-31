@@ -1,9 +1,7 @@
-
-<%= if user.role == "doctor" %>
-      <% @users.each do |user| %>
-      <%= user.first_name%>
-      <%= user.last_name%>
-      <%# <%= user.locations.name%>
-      <%# <%= user.location.address %>
-  <% end %>
+<% @doctors.each do |user| %>
+  <%= user.first_name%>
+  <%= user.last_name%>
+  <%= user.locations.first.name %>
+  <%= user.locations.first.address %>
+  <%= image_tag user.image_url %>
 <% end %>
