@@ -7,12 +7,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "faker"
 
-
-
-puts "cleaning db"
+puts "Cleaning all DB's (Locations, Procedures and Users)"
+Procedure.destroy_all
 Location.destroy_all
 User.destroy_all
-puts "seeding db"
+puts "Seeding db..."
 
 User.create!({email: "marcosa@gmail.com", password: "123456", first_name: "Marcos", last_name: "Amselem", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 User.create!({email: "miguel@gmail.com", password: "123456", first_name: "Miguel", last_name: "Belo", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
@@ -21,6 +20,114 @@ User.create!({email: "ai@gmail.com", password: "123456", first_name: "Ai", last_
 User.create!({email: "yusuf@gmail.com", password: "123456", first_name: "Yusuf", last_name: "Uras", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 
 specialties = ["Orthopaedics", "Plastic Surgery", "Otolaryngology", "Ophthalmology", "Obstetrics and gynaecology", "Urology", "Cardiology", "Oncology", "Dermatology", "Paediatrics", "Vascular surgery", "Geriatric medicine", "General Internal medicine", "General Practice", "Gastro-enterology"]
+
+medical_field = {
+  "Orthopaedics": [
+    { name: "Joint Replacement", price: 8000, duration: 180 },
+    { name: "Fracture Repair", price: 5000, duration: 120 },
+    { name: "Spinal Fusion", price: 9000, duration: 240 },
+    { name: "ACL Reconstruction", price: 7000, duration: 150 },
+    { name: "Hip Arthroscopy", price: 7500, duration: 135 }
+  ],
+  "Plastic Surgery": [
+    { name: "Rhinoplasty", price: 6000, duration: 240 },
+    { name: "Breast Augmentation", price: 7000, duration: 180 },
+    { name: "Liposuction", price: 5500, duration: 120 },
+    { name: "Facelift", price: 8000, duration: 180 },
+    { name: "Botox Injections", price: 3000, duration: 30 }
+  ],
+  "Otolaryngology": [
+    { name: "Tonsillectomy", price: 4000, duration: 90 },
+    { name: "Sinus Surgery", price: 5500, duration: 120 },
+    { name: "Adenoidectomy", price: 3500, duration: 60 },
+    { name: "Septoplasty", price: 5000, duration: 90 },
+    { name: "Ear Tube Insertion", price: 2500, duration: 45 }
+  ],
+  "Ophthalmology": [
+    { name: "Cataract Surgery", price: 4500, duration: 60 },
+    { name: "LASIK", price: 3500, duration: 30 },
+    { name: "Glaucoma Surgery", price: 6000, duration: 90 },
+    { name: "Retinal Detachment Repair", price: 8000, duration: 120 },
+    { name: "Corneal Transplant", price: 7000, duration: 150 }
+  ],
+  "Obstetrics and gynaecology": [
+    { name: "Cesarean Section", price: 10000, duration: 120 },
+    { name: "Hysterectomy", price: 8000, duration: 150 },
+    { name: "Pap Smear", price: 1500, duration: 15 },
+    { name: "Dilation and Curettage (D&C)", price: 3000, duration: 60 },
+    { name: "IUD Insertion", price: 2000, duration: 30 }
+  ],
+  "Urology": [
+    { name: "Kidney Stone Removal", price: 6000, duration: 90 },
+    { name: "Prostatectomy", price: 7500, duration: 180 },
+    { name: "Bladder Biopsy", price: 4500, duration: 45 },
+    { name: "Cystoscopy", price: 3500, duration: 30 },
+    { name: "Vasectomy", price: 5000, duration: 60 }
+  ],
+  "Cardiology": [
+    { name: "Angioplasty", price: 12000, duration: 120 },
+    { name: "Pacemaker Implantation", price: 9000, duration: 90 },
+    { name: "Cardiac Catheterization", price: 8000, duration: 75 },
+    { name: "Echocardiogram", price: 3500, duration: 45 },
+    { name: "Stress Test", price: 2500, duration: 30 }
+  ],
+  "Oncology": [
+    { name: "Chemotherapy", price: 5000, duration: 180 },
+    { name: "Radiation Therapy", price: 7000, duration: 120 },
+    { name: "Surgery for Tumor Removal", price: 9000, duration: 150 },
+    { name: "Biopsy", price: 3000, duration: 60 },
+    { name: "Immunotherapy", price: 6000, duration: 90 }
+  ],
+  "Dermatology": [
+    { name: "Skin Biopsy", price: 300, duration: 20 },
+    { name: "Acne Treatment", price: 150, duration: 30 },
+    { name: "Skin Allergy Testing", price: 250, duration: 45 },
+    { name: "Laser Hair Removal", price: 200, duration: 15 },
+    { name: "Mole Removal", price: 180, duration: 20 }
+  ],
+  "Paediatrics": [
+    { name: "Child Vaccination", price: 100, duration: 10 },
+    { name: "Growth Monitoring", price: 50, duration: 15 },
+    { name: "Pediatric Check-up", price: 75, duration: 20 },
+    { name: "Developmental Assessment", price: 120, duration: 30 },
+    { name: "Asthma Management", price: 90, duration: 25 }
+  ],
+  "Vascular surgery": [
+    { name: "Varicose Vein Removal", price: 4500, duration: 90 },
+    { name: "Aneurysm Repair", price: 8000, duration: 180 },
+    { name: "Carotid Endarterectomy", price: 6000, duration: 120 },
+    { name: "Peripheral Artery Bypass", price: 7000, duration: 150 },
+    { name: "Angiogram", price: 3500, duration: 75 }
+  ],
+  "Geriatric medicine": [
+    { name: "Elderly Health Assessment", price: 200, duration: 30 },
+    { name: "Dementia Evaluation", price: 300, duration: 45 },
+    { name: "Osteoporosis Screening", price: 150, duration: 20 },
+    { name: "Falls Risk Assessment", price: 100, duration: 15 },
+    { name: "Polypharmacy Review", price: 80, duration: 10 }
+  ],
+  "General Internal medicine": [
+    { name: "Physical Examination", price: 150, duration: 30 },
+    { name: "Chronic Disease Management", price: 250, duration: 60 },
+    { name: "Blood Pressure Check", price: 50, duration: 10 },
+    { name: "Diabetes Management", price: 180, duration: 45 },
+    { name: "Thyroid Function Test", price: 120, duration: 20 }
+  ],
+  "General Practice": [
+    { name: "Routine Check-up", price: 100, duration: 20 },
+    { name: "Minor Illness Treatment", price: 75, duration: 15 },
+    { name: "Prescription Refill", price: 30, duration: 5 },
+    { name: "Ear Infection Treatment", price: 50, duration: 10 },
+    { name: "Cough and Cold Consultation", price: 40, duration: 10 }
+  ],
+  "Gastro-enterology": [
+    { name: "Endoscopy", price: 3000, duration: 60 },
+    { name: "Colonoscopy", price: 3500, duration: 90 },
+    { name: "Gastrointestinal Consultation", price: 150, duration: 30 },
+    { name: "Liver Function Test", price: 120, duration: 20 },
+    { name: "Irritable Bowel Syndrome Management", price: 180, duration: 45 }
+  ]
+}
 
 HOSPITALS = [
   ["Homerton University Hospital", "Homerton Row, Homerton Row, London, Greater London, E9 6SR"],
@@ -43,23 +150,52 @@ HOSPITALS = [
   ["Royal Brompton Hospital", "Sydney Street, London, Greater London, SW3 6NP"],
   ["Lister Hospital", "Chelsea Bridge Road, London, Greater London, SW1W 8RH"]
 ]
+
 HOSPITALS.each do |hosp|
   Location.create!(name: hosp[0], address: hosp[1])
-  puts "created #{Location.last.name} hospital"
+  # puts "created #{Location.last.name} hospital"
 end
+
+puts ".....Hospitals created. Creating Doctors....."
 
 100.times do
   User.create!(
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  bio: Faker::Lorem.sentence,
-  phone_number: Faker::PhoneNumber.cell_phone,
-  image_url: Faker::Avatar.image,
-  specialty: specialties.sample,
-  email: Faker::Internet.email,
-  password: "123456",
-  role: "doctor"
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    bio: Faker::Lorem.sentence,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    image_url: Faker::Avatar.image,
+    specialty: specialties.sample,
+    email: Faker::Internet.email,
+    password: "123456",
+    role: "doctor"
   )
-  puts "created #{User.last.first_name} doctor"
+  # puts "created Dr.#{User.last.first_name} #{User.last.last_name} "
   DoctorsLocation.create!(user_id: User.last.id, location_id: Location.all.sample.id)
 end
+
+puts "....Doctors created. Creating procedures for the Specialties...."
+
+medical_field.each do |k, v|
+  doctors = User.where(role: "doctor", specialty: k)
+  v.each do |procedure|
+    # puts procedure
+    if !doctors.empty?
+      Procedure.create!(
+        name: procedure[:name],
+        price: procedure[:price],
+        duration: procedure[:duration],
+        user_id: doctors.sample.id
+      )
+    else
+      Procedure.create!(
+        name: procedure[:name],
+        price: procedure[:price],
+        duration: procedure[:duration],
+        user_id: User.where(role: "doctor").sample.id
+      )
+    end
+  end
+end
+
+puts "Seeding completed. Thank you for your patient ;-) "
