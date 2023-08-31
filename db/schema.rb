@@ -95,7 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_102448) do
     t.text "bio"
     t.string "specialty"
     t.string "image_url"
-    t.integer "role"
+    t.integer "role", default: 0
     t.string "first_name"
     t.string "last_name"
     t.string "phone_number"
