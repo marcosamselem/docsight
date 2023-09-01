@@ -26,7 +26,8 @@
 .show-page-photo-card{
 width: 200px;
 height: 200px;
-background-color: #EEEEEE;
+border-radius: 10px;
+background-color: #DDDDDD;
 margin-left: 20px;
 text-align: center;
 img {
@@ -47,7 +48,9 @@ img {
 .show-page-calander-card{
   width: 502px;
   height: 211px;
-  background-color: beige;
+
+  background-color: #DDDDDD;
+  border-radius: 10px;
   margin-left: 20px;
 
   }
@@ -75,11 +78,17 @@ img {
   .inner{
     display: flex;
     justify-content: space-between;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    padding: 10px;
     margin: 30px 20px 20px 20px;
   }
   .expertise{
     text-align: left;
     margin: 30px 20px 20px 20px;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    padding: 5px;
   }
   }
 
@@ -115,34 +124,3 @@ img {
     background-color:#40e70d;
     color: white;
   }
-
-
-
-// .img {
-//   height: 113px;
-//   width: 144px;
-//   object-fit: cover;
-// }
-
-// .photo-card h2 {
-//   font-size: 16px;
-//   font-weight: bold;
-//   margin: 0;
-// }
-
-// .photo-card p {
-//   font-size: 12px;
-//   line-height: 1.4;
-//   opacity: .7;
-//   margin-bottom: 0;
-//   margin-top: 8px;
-// }
-
-// .card-product .card-product-infos {
-//   padding: 10px;
-//   display: flex;
-//   // justify-content: space-between;
-//   // align-items: flex-end;
-//   flex-direction: column;
-//   // position: relative;
-// }

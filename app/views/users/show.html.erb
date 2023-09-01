@@ -6,12 +6,12 @@
 
   <div class="show-page-card">
     <div class="show-page-photo-card">
-      <%= image_tag @user.image_url %>
+      <%= image_tag @doctor.image_url %>
       <p></p>
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p>Location</p>
       <%# <a href="/new_user_appointment" class="button">Book</a> %>
-      <%= link_to "Book", new_user_appointment_path(@user), class: "button" %>
+      <%= link_to "Book", new_user_appointment_path(@doctor), class: "button" %>
     </div>
 
     <div class="show-page-calander-card">
@@ -24,13 +24,13 @@
     <h1>Bio-card</h1>
 
     <div class="inner">
-        <div><p>Establishment : <%= @user.specialty %></p></div>
+        <div><p>Establishment : <%= @doctor.specialty %></p></div>
         <div><p>Year : 🤯</p></div>
     </div>
 
 
       <div class="expertise">
-        <p>Expertise & Procedures : <%= @user.bio %> </p>
+        <p>Expertise & Procedures : <%= @doctor.bio %> </p>
       </div>
 
 
@@ -38,19 +38,20 @@
 
   <div class="bio-card">
     <h1>Pricing</h1>
+     <% @doctor.procedures.each do |procedure| %>
+
+      <p>Name: <%= procedure.name%></p> <p>Cost: £ <%= procedure.price %> 💷</p>
+      <p>Duration: <%= procedure.duration %> mins ⏳ </p>
+    <% end %>
   </div>
 
   <div class="bio-card">
     <h1>Location</h1>
-  </div>
-
-  <div class="review-card">
-    <h1>Review</h1>
-
-        <div>
-
-        </div>
-
+    <% @doctor.locations.each do |location| %>
+      📍
+      <%= location.name %>
+      <%= location.address %>
+    <% end %>
   </div>
 
 </div>
