@@ -133,7 +133,7 @@ HOSPITALS = [
   ["Homerton University Hospital", "Homerton Row, Homerton Row, London, Greater London, E9 6SR"],
   ["Royal London Hospital", "Whitechapel, London, Greater London, E1 1BB"],
   ["Moorfields Eye Hospital ", " 162 City Road, London, EC1V 2PD"],
-  ["St Bartholomew's Hospital", "St Bartholomew’s Hospital, West Smithfield, City of London, EC1A 7BE"],
+  ["St Bartholomew's Hospital", "St Bartholomew's Hospital, West Smithfield, City of London, EC1A 7BE"],
   ["Guy's Hospital", "Great Maze Pond, London, SE1 9RT"],
   ["Great Ormond Street Hospital", "Great Ormond Street, London, Greater London, WC1N 3JH"],
   ["Royal National ENT and Eastman Dental Hospitals", "47-49 Huntley St, London, WC1E 6DG"],

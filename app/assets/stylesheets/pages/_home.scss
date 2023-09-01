@@ -1,1 +1,156 @@
 // Specific CSS for your home-page
+/* styles.css */
+
+// styles for the footer
+.footer {
+    background-color: white;
+    color: #000000;
+    padding: 20px 0;
+    text-align: center;
+}
+  
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  
+.footer p {
+    margin: 0;
+}
+
+
+.hero {
+  background-color: #C9ADA7;
+}
+
+.home-bg {
+  background-color: #F2E9E4;
+}
+ 
+.search-form {
+    text-align: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.search-form input[type="text"] {
+    padding: 5px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+}
+  
+.search-form button {
+    padding: 5px 10px;
+    background-color: #22213b;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+  
+.home-bg {
+     display: flex;
+    justify-content: flex-end; 
+}
+  
+.content-wrapper {
+  display: flex;
+  align-items: center; 
+  margin-right: 20px; 
+}
+  
+.card-img-top {
+  width: 200px; 
+  height: auto; 
+  
+}
+  
+.paragraph {
+  margin: 0;
+  padding: 20px; 
+}
+  
+.card-png-top img{
+  height: 250px; 
+}
+  
+.content-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bottom-card {
+  margin: 32px 0px;
+}
+
+.bottom-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    width: 100%;
+  }
+}
+//form input modify
+.input::placeholder {
+  color: #7f7374;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.col.col-md-4 {
+  width: 43.333333%;
+}
+
+.home-avatar {
+  // width: 250px;
+  text-align: center;
+  img {
+    border-radius: 50%;
+    width: 150px;
+  }
+}
+
+.my-ul {
+  padding: 16px;
+}
+
+.btn-ghost {
+  background-color: #22213b;
+  color: white;
+  font-weight: bold;
+  box-shadow: #F2E9E4;
+  border: 1px solid #22213b;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+
+}
+
+.search-form-home {
+  width: 75%;
+
+  input {
+    flex-grow: 2;
+  }
+}
