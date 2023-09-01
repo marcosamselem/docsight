@@ -26,5 +26,4 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.require(:appointment).permit(:symptoms, :start_time, :end_time)
   end
-
 end
