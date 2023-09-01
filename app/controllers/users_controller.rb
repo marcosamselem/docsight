@@ -15,10 +15,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @doctor = User.find(params[:id])
     @appointment = Appointment.new
     @date = params[:appointment_date]
-    @doctor = User.find(params[:id])
-    # raise
   end
 
   private

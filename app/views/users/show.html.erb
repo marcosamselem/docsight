@@ -1,13 +1,15 @@
-<h1>Show page for users_controller</h1>
+<div class="container flexbox-wrapper">
 
-<div class="container">
+  <div>
+
   <div class="show-page-card">
     <div class="show-page-photo-card">
       <%= image_tag @doctor.image_url %>
       <p></p>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p>Location</p>
-      <a href="#" class="button">Profile</a>
+      <%# <a href="/new_user_appointment" class="button">Book</a> %>
+      <%= link_to "Book", new_user_appointment_path(@doctor), class: "button" %>
     </div>
 
     <div class="show-page-calander-card">
@@ -27,6 +29,50 @@
       </div>
     </div>
   </div>
+
+
+  <div class="bio-card">
+    <h1>Bio-card</h1>
+
+    <div class="inner">
+        <div><p>Establishment : <%= @doctor.specialty %></p></div>
+        <div><p>Year : 🤯</p></div>
+    </div>
+
+
+      <div class="expertise">
+        <p>Expertise & Procedures : <%= @doctor.bio %> </p>
+      </div>
+
+
+  </div>
+
+  <div class="bio-card">
+    <h1>Pricing</h1>
+     <% @doctor.procedures.each do |procedure| %>
+
+      <p>Name: <%= procedure.name%></p> <p>Cost: £ <%= procedure.price %> 💷</p>
+      <p>Duration: <%= procedure.duration %> mins ⏳ </p>
+    <% end %>
+  </div>
+
+  <div class="bio-card">
+    <h1>Location</h1>
+    <% @doctor.locations.each do |location| %>
+      📍
+      <%= location.name %>
+      <%= location.address %>
+    <% end %>
+  </div>
+
+</div>
+  <%# --------MAP----DIV BELOW------------- %>
+  <div class="sticky">
+    <%# <p>Map</p> %>
+    <%= image_tag "temp-map", width: 510 %>
+  </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
