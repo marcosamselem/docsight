@@ -11,8 +11,20 @@
     </div>
 
     <div class="show-page-calander-card">
-      <h2>Month?</h2>
-        <div class="calander">Calander--Here</div>
+    <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
+      <div class="calander" data-datepicker-target="calendar" >
+        <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
+        <%= form_with url: new_user_appointment_path(@user), method: :get, class: "d-flex flex-column" do %>
+          <%= text_field_tag :appointment_date,
+                params[:appointment_date],
+                class: "form-control",
+                hidden: true,
+                placeholder: "Type a keyword",
+                data: { controller: "datepicker" }
+            %>
+          <%= submit_tag "Check Availability", class: "btn btn-primary " %>
+        <% end %>
+      </div>
     </div>
   </div>
 

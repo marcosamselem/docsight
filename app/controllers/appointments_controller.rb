@@ -4,6 +4,7 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    @date = params[:appointment_date]
   end
 
   def create
@@ -20,7 +21,7 @@ class AppointmentsController < ApplicationController
 
   def show
   end
-  
+
   private
 
   def set_doctor
