@@ -20,7 +20,7 @@ class AppointmentsController < ApplicationController
 
   def show
   end
-  
+
   private
 
   def set_doctor
@@ -30,5 +30,4 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.require(:appointment).permit(:symptoms, :start_date, :end_date)
   end
-
 end
