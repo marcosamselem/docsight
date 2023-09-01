@@ -3,32 +3,50 @@
 <div class="container">
   <div class="show-page-card">
     <div class="show-page-photo-card">
-      <%= image_tag @user.image_url %>
+      <%= image_tag @doctor.image_url %>
       <p></p>
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p>Location</p>
       <a href="#" class="button">Profile</a>
     </div>
 
     <div class="show-page-calander-card">
-      <h2>Month?</h2>
-        <div class="calander">Calander--Here</div>
+    <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
+      <div class="calander d-flex justify-content-center" data-datepicker-target="calendar" >
+        <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
+        <%= form_with method: :get, class: "d-flex flex-column" do %>
+          <%= text_field_tag :appointment_date,
+                params[:appointment_date],
+                class: "form-control",
+                hidden: true,
+                placeholder: "Type a keyword",
+                data: { controller: "datepicker" }
+            %>
+          <%= submit_tag "Check Availability", class: "btn btn-primary mt-3", data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="bio-card">
-    <p>Bio-card</p>
-  </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for [@doctor, @appointment] do |f| %>
+            <%= f.input :start_time, html5: true, input_html: { value: @date } %>
+            <%= f.input :end_time, html5: true %>
+            <%= f.input :symptoms %>
+      </div>
+      <div class="modal-footer">
+            <%= f.submit "Checkout", class: "btn btn-primary" %>
+        <% end %>
 
-  <div class="bio-card">
-    <p>Pricing</p>
-  </div>
-
-  <div class="bio-card">
-    <p>Location</p>
-  </div>
-
-  <div class="bio-card">
-    <p>Review</p>
+      </div>
+    </div>
   </div>
 </div>

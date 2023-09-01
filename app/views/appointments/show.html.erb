@@ -1,10 +1,9 @@
 
 <div class="container">
-  <h5>Thank you! Your booking has been confirmed!</h5>
-  <div class="booking-card-details">
-    <h3><%= @appointment.doctor.first_name %> <%= @appointment.doctor.last_name %></h3>
+  <h5>Your Booking has been confirmed! Thank you!</h5>
+  <div class="confirmation-details">
+    <p><%= @appointment.doctor.first_name %> <%= @appointment.doctor.last_name %></p>
     <%= image_tag(@appointment.doctor.image_url) %>
-    <h2><%= @appointment.start_date %></h2>
-
+    <h3><%= @appointment.start_time %></h3>
   </div>
 </div>
