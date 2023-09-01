@@ -1,13 +1,17 @@
-<h1>Show page for users_controller</h1>
+<%# <h1>Show page for users_controller</h1> %>
 
-<div class="container">
+<div class="container flexbox-wrapper">
+
+  <div>
+
   <div class="show-page-card">
     <div class="show-page-photo-card">
       <%= image_tag @user.image_url %>
       <p></p>
       <h2><%= @user.first_name %> <%= @user.last_name %></h2>
       <p>Location</p>
-      <a href="#" class="button">Profile</a>
+      <%# <a href="/new_user_appointment" class="button">Book</a> %>
+      <%= link_to "Book", new_user_appointment_path(@user), class: "button" %>
     </div>
 
     <div class="show-page-calander-card">
@@ -16,73 +20,47 @@
     </div>
   </div>
 
-<div class="bio-card">
-<p>Bio-card</p>
+  <div class="bio-card">
+    <h1>Bio-card</h1>
+
+    <div class="inner">
+        <div><p>Establishment : <%= @user.specialty %></p></div>
+        <div><p>Year : 🤯</p></div>
+    </div>
+
+
+      <div class="expertise">
+        <p>Expertise & Procedures : <%= @user.bio %> </p>
+      </div>
+
+
+  </div>
+
+  <div class="bio-card">
+    <h1>Pricing</h1>
+  </div>
+
+  <div class="bio-card">
+    <h1>Location</h1>
+  </div>
+
+  <div class="review-card">
+    <h1>Review</h1>
+
+        <div>
+
+        </div>
+
+  </div>
+
+</div>
+<%# --------MAP----DIV BELOW------------- %>
+<div class="sticky">
+<%# <p>Map</p> %>
+<%= image_tag "temp-map", width: 510 %>
 </div>
 
-<div class="bio-card">
-<p>Pricing</p>
-</div>
-
-<div class="bio-card">
-<p>Location</p>
-</div>
-
-<div class="bio-card">
-<p>Review</p>
-</div>
-
-
 
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-<%# -------TEST-----CODE---------------------------------DW---- %>
-<p> Email: <%= @user.email %></p>
-<p> Bio: <%= @user.bio %></p>
-<p> Speciality: <%= @user.specialty %></p>
-<p> Image: <%= @user.image_url %></p>
-<p> Role: <%= @user.role %></p>
-<p> First name: <%= @user.first_name %></p>
-<p> Last name: <%= @user.last_name %></p>
-<p>Phone Number: <%= @user.phone_number %></p>
-<p> Gender: <%= @user.gender %></p>
-<p> DOB: <%= @user.date_of_birth %></p>
-<p> Past Intervention: <%= @user.past_interventions %></p>
-<p> Allergies: <%= @user.allergies %></p>
-<p> Insurance:n<%= @user.insurance_provider %></p>
-
-<table class="table table-success">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Email</th>
-      <th scope="col">DOB</th>
-      <th scope="col">Gender</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><%= @user.first_name %></td>
-      <td><%= @user.last_name %></td>
-      <td><%= @user.email %></td>
-      <td><%= @user.date_of_birth %></td>
-      <td><%= @user.gender %></td>
-    </tr>
-
-  </tbody>
-</table>
-<%# ---------DW----TEST CODE END--------- %>

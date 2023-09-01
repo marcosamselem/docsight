@@ -1,3 +1,17 @@
+.flexbox-wrapper {
+  display: flex;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  // background-color: red;
+  margin-left: 20px;
+}
+
+
 .show-page-card {
   overflow: hidden;
   width: 820px;
@@ -52,8 +66,32 @@ img {
     height: 290px;
     background: #DDDDDD;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    // display: flex;
+  //  flex-direction: column;
+    // align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+
+  .inner{
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    margin: 30px 20px 20px 20px;
+  }
+  .expertise{
+    text-align: left;
+    margin: 30px 20px 20px 20px;
+  }
+  }
+
+  .review-card {
+    overflow: hidden;
+    width: 820px;
+    height: 500px;
+    background: #DDDDDD;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    // display: flex;
+  //  flex-direction: column;
+    // align-items: center;
     text-align: center;
     margin-bottom: 20px;
   }
