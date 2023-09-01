@@ -3,18 +3,18 @@
 <div class="container">
   <div class="show-page-card">
     <div class="show-page-photo-card">
-      <%= image_tag @user.image_url %>
+      <%= image_tag @doctor.image_url %>
       <p></p>
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p>Location</p>
       <a href="#" class="button">Profile</a>
     </div>
 
     <div class="show-page-calander-card">
     <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
-      <div class="calander" data-datepicker-target="calendar" >
+      <div class="calander d-flex justify-content-center" data-datepicker-target="calendar" >
         <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
-        <%= form_with url: new_user_appointment_path(@user), method: :get, class: "d-flex flex-column" do %>
+        <%= form_with method: :get, class: "d-flex flex-column" do %>
           <%= text_field_tag :appointment_date,
                 params[:appointment_date],
                 class: "form-control",
@@ -22,7 +22,7 @@
                 placeholder: "Type a keyword",
                 data: { controller: "datepicker" }
             %>
-          <%= submit_tag "Check Availability", class: "btn btn-primary " %>
+          <%= submit_tag "Check Availability", class: "btn btn-primary mt-3", data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
         <% end %>
       </div>
     </div>
@@ -60,19 +60,19 @@
 
 
 <%# -------TEST-----CODE---------------------------------DW---- %>
-<p> Email: <%= @user.email %></p>
-<p> Bio: <%= @user.bio %></p>
-<p> Speciality: <%= @user.specialty %></p>
-<p> Image: <%= @user.image_url %></p>
-<p> Role: <%= @user.role %></p>
-<p> First name: <%= @user.first_name %></p>
-<p> Last name: <%= @user.last_name %></p>
-<p>Phone Number: <%= @user.phone_number %></p>
-<p> Gender: <%= @user.gender %></p>
-<p> DOB: <%= @user.date_of_birth %></p>
-<p> Past Intervention: <%= @user.past_interventions %></p>
-<p> Allergies: <%= @user.allergies %></p>
-<p> Insurance:n<%= @user.insurance_provider %></p>
+<p> Email: <%= @doctor.email %></p>
+<p> Bio: <%= @doctor.bio %></p>
+<p> Speciality: <%= @doctor.specialty %></p>
+<p> Image: <%= @doctor.image_url %></p>
+<p> Role: <%= @doctor.role %></p>
+<p> First name: <%= @doctor.first_name %></p>
+<p> Last name: <%= @doctor.last_name %></p>
+<p>Phone Number: <%= @doctor.phone_number %></p>
+<p> Gender: <%= @doctor.gender %></p>
+<p> DOB: <%= @doctor.date_of_birth %></p>
+<p> Past Intervention: <%= @doctor.past_interventions %></p>
+<p> Allergies: <%= @doctor.allergies %></p>
+<p> Insurance:n<%= @doctor.insurance_provider %></p>
 
 <table class="table table-success">
   <thead>
@@ -88,13 +88,38 @@
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td><%= @user.first_name %></td>
-      <td><%= @user.last_name %></td>
-      <td><%= @user.email %></td>
-      <td><%= @user.date_of_birth %></td>
-      <td><%= @user.gender %></td>
+      <td><%= @doctor.first_name %></td>
+      <td><%= @doctor.last_name %></td>
+      <td><%= @doctor.email %></td>
+      <td><%= @doctor.date_of_birth %></td>
+      <td><%= @doctor.gender %></td>
     </tr>
 
   </tbody>
 </table>
 <%# ---------DW----TEST CODE END--------- %>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for [@doctor, @appointment] do |f| %>
+            <%= f.input :start_time, html5: true, input_html: { value: @date } %>
+            <%= f.input :end_time, html5: true %>
+            <%= f.input :symptoms %>
+      </div>
+      <div class="modal-footer">
+            <%= f.submit "Checkout", class: "btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

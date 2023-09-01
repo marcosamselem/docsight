@@ -1,17 +1,11 @@
 class AppointmentsController < ApplicationController
   before_action :set_doctor, only: [:new, :create]
 
-
-  def new
-    @appointment = Appointment.new
-    @date = params[:appointment_date]
-  end
-
   def create
     @appointment = Appointment.new(appointment_params)
+    @appointment.patient = current_user
     @appointment.doctor = @doctor
     @appointment.location = @doctor.locations.first
-    @appointment.patient = current_user
     if @appointment.save
       redirect_to appointment_path(@appointment)
     else
@@ -20,6 +14,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @appointment = Appointment.find(params[:id])
   end
 
   private
@@ -29,7 +24,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:symptoms, :start_date, :end_date)
+    params.require(:appointment).permit(:symptoms, :start_time, :end_time)
   end
 
 end
