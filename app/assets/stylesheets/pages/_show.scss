@@ -13,7 +13,7 @@
 
 
 .show-page-card {
-  overflow: hidden;
+  overflow: visible;
   width: 820px;
   height: 304px;
   background: #DDDDDD;
@@ -121,6 +121,6 @@ img {
   }
 
   .button:hover {
-    background-color:#40e70d;
-    color: white;
+    background-color: #C9ADA7;
+    color: black;
   }

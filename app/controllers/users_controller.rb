@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @doctor = User.find(params[:id])
+    @appointment = Appointment.new
+    @date = params[:appointment_date]
   end
 
   private
