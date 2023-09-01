@@ -19,8 +19,9 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @appointment = Appointment.find(params[:id])
   end
-  
+
   private
 
   def set_doctor
