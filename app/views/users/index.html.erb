@@ -1,16 +1,30 @@
-<div class="container text-center">
-</div>
-  <h1>Select your prefered doctor!</h1>
-  <% @doctors.each do |user| %>
-    <% full_name = "#{user.first_name} #{user.last_name}" %>
-    <div class="card-product my-3 btn">
-      <%= image_tag user.image_url %>
-      <div class="card-product-infos">
-        <%= user.first_name%>
-        <%= user.last_name%>
-        <%= user.locations.first.name %>
-        <%= user.locations.first.address %>
-      </div>
+<div class="back-col">
+  <div class="container">
+    <div class= "text-center font">
+      <h1>Select your prefered doctor</h1>
     </div>
-<div>
-<% end %>
+    <div class="wrap">
+      <% @doctors.each do |user| %>
+        <div class="box hover-effect">
+          <%= link_to user_path(user) do %>
+              <% full_name = "#{user.first_name} #{user.last_name}" %>
+              <div class="box-top">
+                <%= image_tag user.image_url, class: "shadow mb-3 p-3 bg-body rounded" %>
+                <div class="title-flex alignment">
+                  <h3 class="box-title"><%=full_name%></h3>
+                  <p><%=user.locations.first.name%></p>
+                  <span class="user-follow-info"><%=user.locations.first.address%></span>
+                </div>
+                <p class="description mb-3">
+                <%= user.bio %>
+                </p>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button class="button btn">See profile</button>
+              </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
