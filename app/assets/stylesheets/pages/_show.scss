@@ -24,17 +24,17 @@
 }
 
 .show-page-photo-card{
-width: 200px;
-height: 200px;
-border-radius: 10px;
-background-color: #DDDDDD;
-margin-left: 20px;
-text-align: center;
-img {
-  width: 144px;
-  height: 113px;
+  width: 200px;
+  // height: 200px;
+  border-radius: 10px;
+  background-color: #DDDDDD;
+  margin-left: 20px;
+  text-align: center;
+  img {
+    width: 144px;
+    height: 113px;
 
-}
+  }
 }
 
 .show-page-photo-card h2{
@@ -124,3 +124,9 @@ img {
     background-color: #C9ADA7;
     color: black;
   }
+
+
+
+#exampleModal {
+  background-color: rgba(0, 0, 0, 0.5); /* Set the background color with opacity */
+}
