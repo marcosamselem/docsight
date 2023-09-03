@@ -21,7 +21,7 @@ User.create!({email: "yusuf@gmail.com", password: "123456", first_name: "Yusuf",
 
 specialties = ["Orthopaedics", "Plastic Surgery", "Otolaryngology", "Ophthalmology", "Obstetrics and gynaecology", "Urology", "Cardiology", "Oncology", "Dermatology", "Paediatrics", "Vascular surgery", "Geriatric medicine", "General Internal medicine", "General Practice", "Gastro-enterology"]
 
-medical_field = {
+specialty_procedures = {
   "Orthopaedics": [
     { name: "Joint Replacement", price: 8000, duration: 180 },
     { name: "Fracture Repair", price: 5000, duration: 120 },
@@ -170,29 +170,28 @@ puts ".....Hospitals created. Creating Doctors....."
     password: "123456",
     role: "doctor"
   )
-  # puts "created Dr.#{User.last.first_name} #{User.last.last_name} "
-  DoctorsLocation.create!(user_id: User.last.id, location_id: Location.all.sample.id)
+  # Convert locations to an array
+  locations = Location.all.to_a
+
+  # Shuffle the locations array to randomize location assignments
+  shuffled_locations = locations.shuffle
+  shuffled_locations.take(3).each do |location|
+    DoctorsLocation.create!(user_id: User.last.id, location_id: location.id)
+  end
 end
 
 puts "....Doctors created. Creating procedures for the Specialties...."
 
-medical_field.each do |k, v|
-  doctors = User.where(role: "doctor", specialty: k)
-  v.each do |procedure|
-    # puts procedure
-    if !doctors.empty?
+specialty_procedures.each do |specialty, procedures|
+  doctors = User.where(role: "doctor", specialty: specialty)
+  doctors.each do |doctor|
+    procedures.each do |procedure|
+      # puts procedure
       Procedure.create!(
         name: procedure[:name],
         price: procedure[:price],
         duration: procedure[:duration],
-        user_id: doctors.sample.id
-      )
-    else
-      Procedure.create!(
-        name: procedure[:name],
-        price: procedure[:price],
-        duration: procedure[:duration],
-        user_id: User.where(role: "doctor").sample.id
+        user_id: doctor.id
       )
     end
   end
