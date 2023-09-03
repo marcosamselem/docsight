@@ -7,14 +7,14 @@
       <%= image_tag @doctor.image_url %>
       <p></p>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
-      <p>Location</p>
+      <p> Location: <%= @doctor.locations.last.address%></p>
       <%# <a href="/new_user_appointment" class="button">Book</a> %>
       <%= link_to "Book", new_user_appointment_path(@doctor), class: "button" %>
     </div>
 
     <div class="show-page-calander-card">
     <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
-      <div class="calander d-flex justify-content-center" data-datepicker-target="calendar" >
+      <div class="calander d-flex justify-content-center">
         <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
         <%= form_with method: :get, class: "d-flex flex-column" do %>
           <%= text_field_tag :appointment_date,
@@ -22,9 +22,11 @@
                 class: "form-control",
                 hidden: true,
                 placeholder: "Type a keyword",
-                data: { controller: "datepicker" }
+                # The Controller should Listen for a submit and capture the params[:appointment_date]
+                data: { controller: "datepicker", action: "click->setDate" , target: "appointment_date" }
             %>
-          <%= submit_tag "Check Availability", class: "btn btn-primary mt-3", data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
+          <%= submit_tag "Check Availability", class: "btn btn-primary mt-3",
+           data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
         <% end %>
       </div>
     </div>
@@ -75,18 +77,43 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+<<<<<<< HEAD
       <div class="modal-body">
           <%= simple_form_for [@doctor, @appointment] do |f| %>
             <%= f.input :start_time, html5: true, input_html: { value: @date } %>
             <%= f.input :end_time, html5: true %>
             <%= f.input :symptoms %>
+=======
+      <div class="modal-body d-flex">
+        <div class="show-page-photo-card mx-3">
+          <%= image_tag @doctor.image_url %>
+          <h2 class="my-3"><strong>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></strong></h2>
+          <h2><%= @doctor.specialty %></h2>
+        </div>
+        <div>
+          <p>Please choose the Procedure below:</p>
+          <ol>
+          <% @doctor.procedures.each do |p| %>
+              <li><%= p.name %> takes <%= p.duration %> minutes and costs £<%= number_with_delimiter(p.price)%></li>
+          <% end %>
+          </ol>
+        </div>
+      </div>
+      <div class="modal-body border-top">
+        <%= simple_form_for [@doctor, @appointment] do |f| %>
+          <%# We need to the get the DD/MM/YYYY from the simple_form above, somehow %>
+          <%= f.input :start_time, html5: true, input_html: { value: @date } %>
+          <%= f.input :symptoms
+        %>
+      </div>
+      <div class="modal-footer">
+>>>>>>> dd95286a3d83198ad0c3c8de84d4838e51a635b4
             <%= f.submit "Checkout", class: "btn btn-primary" %>
         <% end %>
       </div>

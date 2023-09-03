@@ -2,9 +2,13 @@ class AppointmentsController < ApplicationController
   before_action :set_doctor, only: [:new, :create]
 
   def create
+    date = params[:appointment_date]
     @appointment = Appointment.new(appointment_params)
     @appointment.patient = current_user
     @appointment.doctor = @doctor
+    raise
+    # End time will be defined by calculating the start_time + procedure.duration
+    # The Location can't be the first by default, it needs to be the specific one
     @appointment.location = @doctor.locations.first
     if @appointment.save
       redirect_to appointment_path(@appointment)
@@ -24,6 +28,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:symptoms, :start_time, :end_time)
+    params.require(:appointment).permit(:symptoms, :start_time)
   end
 end
