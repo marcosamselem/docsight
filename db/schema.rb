@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_132923) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_102448) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_132923) do
     t.bigint "location_id", null: false
     t.text "additional_details"
     t.string "symptoms"
-    t.date "start_date"
-    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
     t.integer "status", default: 0
     t.bigint "patient_id"
     t.bigint "doctor_id"
@@ -106,8 +106,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_132923) do
     t.string "insurance_provider"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

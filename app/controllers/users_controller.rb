@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   def index
     @doctors = User.where(role: "doctor")
+    @doctors.each do |doctor|
+      @markers = doctor.locations.geocoded.map do |location|
+        {
+          lat: location.latitude,
+          lng: location.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {location: location})
+        }
+      end
+    end
   end
 
   def new
@@ -18,6 +27,14 @@ class UsersController < ApplicationController
     @doctor = User.find(params[:id])
     @appointment = Appointment.new
     @date = params[:appointment_date]
+    @doctor.locations
+      @markers = @doctor.locations.geocoded.map do |location|
+        {
+          lat: location.latitude,
+          lng: location.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {location: location})
+        }
+    end
   end
 
   private

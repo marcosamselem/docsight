@@ -1,8 +1,8 @@
 <div class="back-col">
-  <div class="container">
-    <div class= "text-center font">
+ <div class= "text-center font">
       <h1>Select your prefered doctor</h1>
     </div>
+  <div class="container disposition d-flex">
     <div class="wrap">
       <% @doctors.each do |user| %>
         <div class="box hover-effect">
@@ -26,5 +26,11 @@
         </div>
       <% end %>
     </div>
+    <div style="width: 100%; height: 600px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
   </div>
 </div>
