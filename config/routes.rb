@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :appointments, only: [:new, :create]
   end
 
-  resources :appointments, only: [:show]
+  resources :appointments, only: [:show, :index]
   # Defines the root path route ("/")
   # root "articles#index"
   resources :users, only: [:show]

@@ -7,3 +7,6 @@
     <h3><%= @appointment.start_time %></h3>
   </div>
 </div>
+<div>
+  <%= link_to "My Dashboard", appointments_path(current_user) %>
+</div>

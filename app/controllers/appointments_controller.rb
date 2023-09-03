@@ -1,19 +1,23 @@
 class AppointmentsController < ApplicationController
-  before_action :set_doctor, only: [:new, :create]
+  before_action :set_doctor, only: [:create]
+
+  def index
+    @user = current_user
+    @appointments = @user.appointments_as_patient.all.to_a
+  end
 
   def create
-    date = params[:appointment_date]
+    # date = params[:appointment_date] | We need to get the DD/MM/YYYY from User's controller
     @appointment = Appointment.new(appointment_params)
     @appointment.patient = current_user
     @appointment.doctor = @doctor
-    raise
     # End time will be defined by calculating the start_time + procedure.duration
     # The Location can't be the first by default, it needs to be the specific one
     @appointment.location = @doctor.locations.first
     if @appointment.save
       redirect_to appointment_path(@appointment)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to user_path(@doctor), status: :unprocessable_entity
     end
   end
 
@@ -28,6 +32,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:symptoms, :start_time)
+    params.require(:appointment).permit(:symptoms, :start_time, :end_time)
   end
 end
