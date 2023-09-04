@@ -29,7 +29,8 @@
 }
 
 .card-product .card-product-infos {
-  padding: 16px;
+  min-width: 650px;
+  max-width: 650px
 }
 
 .container {
@@ -50,4 +51,11 @@
 
 .font-title{
   font-family: $headers-font;
+}
+
+.img-size{
+ min-height: 120px;
+ max-height: 120px;
+background-size: cover;
+border-radius: 10px;
 }
