@@ -1,0 +1,44 @@
+<%# if appointment is bigger than the appointment date, is upcoming, otherwise it's past appointments %>
+
+
+
+<div class="container upcoming-appointments my-5">
+  <h3>Upcoming Appointments</h3>
+  <% @appointments.each do |appointment| %>
+    <%# <p>Time now is : Time.now while Appointment is <%= appointment.start_time </p> %>
+    <% if Time.now < appointment.start_time %>
+      <div class="appointment-card d-flex">
+        <div class="appointment-details">
+          <p>Dr.<%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %> </p>
+          <p><%= appointment.location.address %></p>
+          <p><%= appointment.start_time %></p>
+          <p><%= appointment.symptoms %></p>
+        </div>
+        <div class="cta-buttons">
+          <%= link_to "Book a new appointment with #{appointment.doctor.first_name}", user_path(appointment.doctor)%>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+<div class="container past-appointments my-5">
+  <h3>Previous appointments</h3>
+  <% @appointments.each do |appointment| %>
+    <% if Time.now > appointment.start_time %>
+      <div class="appointment-card d-flex">
+        <div class="appointment-details">
+          <p>Dr.<%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %> </p>
+          <p><%= appointment.location.address %></p>
+          <p><%= appointment.start_time %></p>
+          <p><%= appointment.symptoms %></p>
+        </div>
+        <div class="cta-buttons">
+          <%= link_to "Book a new appointment with Dr.#{appointment.doctor.first_name}", user_path(appointment.doctor)%>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
