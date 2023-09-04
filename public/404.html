@@ -4,13 +4,21 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+.rails-default-error-page {
+  background-image: url('medical.png');
+  background-color: #f1e9e4;
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  /* background-attachment: fixed;  */
+  background-position: center center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  margin: 50px 30px;
+  padding: 0;
+}
+
 
   .rails-default-error-page div.dialog {
     width: 95%;
@@ -54,14 +62,8 @@
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body>
+  <div class="rails-default-error-page"></div>
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
 </body>
-</html>
+  
