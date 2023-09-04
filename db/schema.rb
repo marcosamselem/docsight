@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_102448) do
     t.bigint "location_id", null: false
     t.text "additional_details"
     t.string "symptoms"
-    t.date "start_date"
-    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
     t.integer "status", default: 0
     t.bigint "patient_id"
     t.bigint "doctor_id"
