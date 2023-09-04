@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     @doctor = User.find(params[:id])
     @appointment = Appointment.new
     @date = params[:appointment_date]
+    # @doctor_appointments = Appointment.where() the date day == to the form, and the Doctor Id from the doctors table
+    # @procedure = params[:procedure]
   end
 
   private

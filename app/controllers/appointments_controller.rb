@@ -11,6 +11,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @appointment.patient = current_user
     @appointment.doctor = @doctor
+    # start_time = Time.new(params, )
     # End time will be defined by calculating the start_time + procedure.duration
     # The Location can't be the first by default, it needs to be the specific one
     @appointment.location = @doctor.locations.first
