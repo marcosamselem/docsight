@@ -8,10 +8,19 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-lewagon img.navbar-brand  {
   width: 175px;
+}
+
+.navbar-lewagon img.logo-stratoscope {
+  width: 50px;
+  padding: 10px 0 0 6px;
 }
 
 .container-fluid {
   background-color:#C9ADA7;
+}
+
+.login-link {
+  padding-left: 0.2rem;
 }
