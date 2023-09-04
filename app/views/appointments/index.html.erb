@@ -15,7 +15,6 @@
           <p><%= appointment.symptoms %></p>
         </div>
         <div class="cta-buttons">
-          <%= link_to "Add a review",appointment_path(appointment) %>
           <%= link_to "Book a new appointment with #{appointment.doctor.first_name}", user_path(appointment.doctor)%>
         </div>
       </div>
@@ -37,7 +36,7 @@
           <p><%= appointment.symptoms %></p>
         </div>
         <div class="cta-buttons">
-          <%= link_to "Add a review",appointment_path(appointment), class: "btn btn-primary" %>
+          <%= link_to "Add a review", new_appointment_review_path(appointment), class: "btn btn-primary" %>
           <%= link_to "Book a new appointment with Dr.#{appointment.doctor.first_name}", user_path(appointment.doctor), class: "btn btn-primary"%>
         </div>
       </div>
