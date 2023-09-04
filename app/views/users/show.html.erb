@@ -16,16 +16,22 @@
     <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
       <div class="calander d-flex justify-content-center">
         <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
-        <%= form_with method: :get, class: "d-flex flex-column" do %>
-          <%= text_field_tag :appointment_date,
-                params[:appointment_date],
+        <%= form_with method: :get, class: "d-flex flex-column" do |f| %>
+          <%= f.text_field :appointment_date,
+                value: params[:appointment_date],
                 class: "form-control",
                 hidden: true,
                 placeholder: "Type a keyword",
                 # The Controller should Listen for a submit and capture the params[:appointment_date]
                 data: { controller: "datepicker", action: "click->setDate" , target: "appointment_date" }
             %>
-            <%# We need to add a Procedure dropdown to get its duration %>
+            <%= f.collection_radio_buttons :procedure, @doctor.procedures,
+              :id,
+              :name,
+              { value_method: :id },
+              { wrapper_tag: :div, wrapper_class: "category-wrapper", item_wrapper_class: "category-item", item_wrapper_tag: :div, class: "category-selector" }
+            %>
+              <%# We need to add a Procedure dropdown to get its duration %>
           <%= submit_tag "Check Availability", class: "btn btn-primary mt-3",
            data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
         <% end %>
@@ -116,9 +122,11 @@
       </div>
       <div class="modal-body border-top">
         <%= simple_form_for [@doctor, @appointment] do |f| %>
-          <%= f.input :start_time, html5: true, input_html: { value: @date } %>
-          <%= f.input :end_time, html5: true, input_html: { value: @date } %>
+          <%= f.input :start_time, as: :time, html5: true, input_html: { value: @date } %>
+          <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
           <%= hidden_field_tag 'date', @date %>
+          <%= hidden_field_tag 'procedure', @procedure %>
+          <%= hidden_field_tag 'doctor_appointments', @doctor_appointments %>
           <%= f.input :symptoms %>
           <%= f.submit "Checkout", class: "btn btn-primary" %>
         <% end %>
