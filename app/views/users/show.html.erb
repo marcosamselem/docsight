@@ -25,6 +25,7 @@
                 # The Controller should Listen for a submit and capture the params[:appointment_date]
                 data: { controller: "datepicker", action: "click->setDate" , target: "appointment_date" }
             %>
+            <%# We need to add a Procedure dropdown to get its duration %>
           <%= submit_tag "Check Availability", class: "btn btn-primary mt-3",
            data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
         <% end %>
@@ -106,6 +107,7 @@
           <%# We need to the get the DD/MM/YYYY from the simple_form above, somehow %>
           <%= f.input :start_time, html5: true, input_html: { value: @date } %>
           <%= f.input :end_time, html5: true, input_html: { value: @date } %>
+          <%= hidden_field_tag 'date', @date %>
           <%= f.input :symptoms %>
           <%# <%= f.association :doctor, collection: @doctor.specialty, prompt: "Choose the procedure" %>
 
