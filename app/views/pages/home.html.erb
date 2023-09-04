@@ -3,14 +3,12 @@
     <%# // This is the form size code  %>
     <div class="search-form">
         <form class="form search-form-home" action="/users" method="get">  
-            <input type="text" class="input" name="specialty" placeholder=" 🕴 Speciality ?">
-            <%# <input type="text" class="input" name="location" placeholder=" 📍 Where ? "> %>
+            <input type="text" class="input" name="specialty" placeholder="🕴 Speciality ?">
             <button type="submit">Search</button>
-            
         </form>
     </div>
 </section>
-  
+
 <section class="home-bg mt-5">
     <div class="container mt-2">
     <h3 class="text-center pt-4">
@@ -18,15 +16,15 @@
     </h3>
 
     <br>
-    
+
     <div class="row mb-5">
       <div class="col-lg-4">
         <div class="card home-avatar">
           <%# <img src="image-url" class="card-img-top" alt="Card Image"> %>
           <div class="card-body">
-            <%= image_tag 'dentist', height: 150 %>
+            <%= image_tag 'dentist.png', height: 150 %>
             <h5 class="card-title"> <br> Dentist</h5>
-           
+
           </div>
         </div>
       </div>
@@ -37,7 +35,7 @@
             <%= image_tag 'psychiatrist1.png', height: 150 %>
             <br>
             <h5 class="card-title"> <br> Psychiatrist </h5>
-          
+
           </div>
         </div>
       </div>
@@ -48,8 +46,8 @@
             <%= image_tag 'eye.png', height: 150 %>
             <br>
             <h5 class="card-title"> <br> Eye Doctor </h5>
-            
-            
+
+
           </div>
         </div>
       </div>
@@ -64,7 +62,7 @@
         <div class="col-sm-6 col-md-6">
           <div class="card-png-top">
             <%= image_tag "doc.png", class: "card-image", alt: "Card png" %>
-          </div>      
+          </div>
         </div>
         <div class="col-sm-6 col-md-6">
           <div class="bottom-card-info">
@@ -89,4 +87,3 @@
     <p>&copy; 2023 DOCSIGHT. All rights reserved.By Yusuf Uras Celikdemir</p>
   </div>
 </footer>
- 
