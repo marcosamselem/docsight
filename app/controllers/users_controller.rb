@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
   def index
-    @doctors = User.where(role: "doctor") 
+    @doctors = User.where(role: "doctor")
     if params[:specialty].present?
      @doctors =  User.search_by_specialty(params[:specialty])
     end
-    @doctors.each do |doctor|
-      @markers = doctor.locations.geocoded.map do |location|
+    @locations = Location.all
+      @markers = @locations.geocoded.map do |location|
         {
           lat: location.latitude,
           lng: location.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {location: location})
+          info_window_html: render_to_string(partial: "info_window", locals: { location: location }),
+          marker_html: render_to_string(partial: "marker")
         }
-      end
     end
   end
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @date = params[:appointment_date]
     # @doctor_appointments = Appointment.where() the date day == to the form, and the Doctor Id from the doctors table
     # @procedure = params[:procedure]
-    
+
     @doctor.locations
       @markers = @doctor.locations.geocoded.map do |location|
         {
