@@ -1,4 +1,4 @@
-<div class="container flexbox-wrapper">
+<div class="container flexbox-wrapper mt-5">
 
   <div>
 
@@ -74,13 +74,25 @@
     <% end %>
   </div>
 
+<%# ---------REVIEW CARD----START------------ %>
+<%# ---------FROM usercontroller.rb------- %>
+  <div class="bio-card">
+  <h1>Reviews</h1>
+    <% @reviews.each do |review| %>
+    <p>Rating : <%= review.rating %></p>
+    <p>Comment : <%= review.comment %></p>
+
+    <% end %>
+  </div>
+<%# -----------REVIEW---CARD-----END----------- %>
+
   <%# --------MAP----DIV BELOW------------- %>
   <div class="sticky" style="width: 100%; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-
+<%# -------------MAP----DIV-----END------------- %>
 
 
 
@@ -110,16 +122,13 @@
       </div>
       <div class="modal-body border-top">
         <%= simple_form_for [@doctor, @appointment] do |f| %>
-          <%# We need to the get the DD/MM/YYYY from the simple_form above, somehow %>
           <%= f.input :start_time, as: :time, html5: true, input_html: { value: @date } %>
           <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
           <%= hidden_field_tag 'date', @date %>
           <%= hidden_field_tag 'procedure', @procedure %>
           <%= hidden_field_tag 'doctor_appointments', @doctor_appointments %>
           <%= f.input :symptoms %>
-      </div>
-      <div class="modal-footer">
-        <%= f.submit "Checkout", class: "btn btn-primary" %>
+          <%= f.submit "Checkout", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

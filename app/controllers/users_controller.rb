@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   def index
-    @doctors = User.where(role: "doctor")
+    @doctors = User.where(role: "doctor") 
+    if params[:specialty].present?
+      @doctors = User.search_by_specialty(params[:specialty])
+    end
+    if @doctors.empty?
+      @doctors = User.where(role: "doctor")
+    end
     @doctors.each do |doctor|
       @markers = doctor.locations.geocoded.map do |location|
         {
@@ -13,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    # To create the patient
     @patient = User.new
   end
 
@@ -26,9 +33,6 @@ class UsersController < ApplicationController
   def show
     @doctor = User.find(params[:id])
     @doctor_appointments = User.find(@doctor.id).appointments_as_doctor
-    # Date as a string, convert to date
-    # User.find(15).appointments_as_doctor
-    # @doctor_appointments = Appointment.where() the date day == to the form, and the Doctor Id from the doctors table
     @date = params[:appointment_date].to_date if params[:appointment_date]
     @procedure = Procedure.find(params[:procedure]).name if params[:procedure]
     @appointment = Appointment.new
@@ -37,11 +41,17 @@ class UsersController < ApplicationController
         appointment.start_time.to_date == @date
       end
     end
+    @appointment = Appointment.new
+# ------look for  an appointment for the current doctor being shown------
+    @appointments_doc = Appointment.where(doctor_id: @doctor.id)
+# ---------now  go through reviews looking for multiple appointments for that doctor---------
+    @reviews = Review.where(appointment_id: @appointments_doc.ids)
+
     @markers = @doctor.locations.geocoded.map do |location|
       {
         lat: location.latitude,
         lng: location.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { location: location })
+        info_window_html: render_to_string(partial: "info_window", locals: {location: location})
       }
     end
   end

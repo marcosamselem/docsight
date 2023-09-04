@@ -29,4 +29,12 @@ class User < ApplicationRecord
   def user_is_doctor?
     role == "doctor"
   end
+
+  include PgSearch::Model
+  pg_search_scope :search_by_specialty,
+    against: [ :specialty ],
+    using: {
+      tsearch: { prefix: true } # <-- now `spceialty` will return something!
+    }
+
 end
