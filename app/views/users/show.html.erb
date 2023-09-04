@@ -116,14 +116,11 @@
       </div>
       <div class="modal-body border-top">
         <%= simple_form_for [@doctor, @appointment] do |f| %>
-          <%# We need to the get the DD/MM/YYYY from the simple_form above, somehow %>
           <%= f.input :start_time, html5: true, input_html: { value: @date } %>
           <%= f.input :end_time, html5: true, input_html: { value: @date } %>
           <%= hidden_field_tag 'date', @date %>
           <%= f.input :symptoms %>
-          <%# <%= f.association :doctor, collection: @doctor.specialty, prompt: "Choose the procedure" %>
-
-            <%= f.submit "Checkout", class: "btn btn-primary" %>
+          <%= f.submit "Checkout", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

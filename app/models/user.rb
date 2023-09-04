@@ -30,9 +30,11 @@ class User < ApplicationRecord
     role == "doctor"
   end
 
-  # def self.doctor_reviews
-  #   Review.where(appointment_id: current_user.id)
-  # end
-
+  include PgSearch::Model
+  pg_search_scope :search_by_specialty,
+    against: [ :specialty ],
+    using: {
+      tsearch: { prefix: true } # <-- now `spceialty` will return something!
+    }
 
 end

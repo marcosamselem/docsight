@@ -39,6 +39,7 @@
     padding: 5px;
     background-color: #d9d9d9;
     border-radius: 5px;
+    text-indent: 4px;
 }
 
 .search-form button {
@@ -52,6 +53,7 @@
 .form {
   display: flex;
   justify-content: center;
+  max-width: 40rem;
 }
 
 .home-bg {
