@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    # To create the patient
     @patient = User.new
   end
 
