@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @doctors = User.where(role: "doctor")
+    @doctors = User.where(role: "doctor") 
+    if params[:specialty].present?
+     @doctors =  User.search_by_specialty(params[:specialty])
+    end
     @doctors.each do |doctor|
       @markers = doctor.locations.geocoded.map do |location|
         {
@@ -13,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    # To create the patient
     @patient = User.new
   end
 
