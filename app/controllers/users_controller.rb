@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @doctors = User.where(role: "doctor")
+    @doctors = User.where(role: "doctor") 
+    if params[:specialty].present?
+     @doctors =  User.search_by_specialty(params[:specialty])
+    end
   end
   
   def new

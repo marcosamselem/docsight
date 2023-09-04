@@ -34,7 +34,7 @@ class User < ApplicationRecord
   pg_search_scope :search_by_specialty,
     against: [ :specialty ],
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true } # <-- now `spceialty` will return something!
     }
 
 end
