@@ -4,7 +4,7 @@
 
   <div class="show-page-card">
     <div class="show-page-photo-card">
-      <%= image_tag @doctor.image_url %>
+      <% image_tag @doctor.image_url %>
       <p></p>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p> Location: <%= @doctor.locations.last.address%></p>
@@ -68,12 +68,14 @@
     <% end %>
   </div>
 
-</div>
   <%# --------MAP----DIV BELOW------------- %>
-  <div class="sticky">
-    <%# <p>Map</p> %>
-    <%= image_tag "temp-map", width: 510 %>
-  </div>
+  <div class="sticky" style="width: 100%; height: 600px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
+
 
 
 
@@ -84,6 +86,7 @@
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body d-flex">
         <div class="show-page-photo-card mx-3">
           <%= image_tag @doctor.image_url %>
@@ -110,6 +113,7 @@
 
       </div>
       <div class="modal-footer">
+
             <%= f.submit "Checkout", class: "btn btn-primary" %>
         <% end %>
       </div>
