@@ -29,4 +29,10 @@ class User < ApplicationRecord
   def user_is_doctor?
     role == "doctor"
   end
+
+  # def self.doctor_reviews
+  #   Review.where(appointment_id: current_user.id)
+  # end
+
+
 end

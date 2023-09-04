@@ -1,4 +1,4 @@
-<div class="container flexbox-wrapper">
+<div class="container flexbox-wrapper mt-5">
 
   <div>
 
@@ -68,13 +68,25 @@
     <% end %>
   </div>
 
+<%# ---------REVIEW CARD----START------------ %>
+<%# ---------FROM usercontroller.rb------- %>
+  <div class="bio-card">
+  <h1>Reviews</h1>
+    <% @reviews.each do |review| %>
+    <p>Rating : <%= review.rating %></p>
+    <p>Comment : <%= review.comment %></p>
+
+    <% end %>
+  </div>
+<%# -----------REVIEW---CARD-----END----------- %>
+
   <%# --------MAP----DIV BELOW------------- %>
   <div class="sticky" style="width: 100%; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-
+<%# -------------MAP----DIV-----END------------- %>
 
 
 
@@ -110,9 +122,6 @@
           <%= hidden_field_tag 'date', @date %>
           <%= f.input :symptoms %>
           <%# <%= f.association :doctor, collection: @doctor.specialty, prompt: "Choose the procedure" %>
-
-      </div>
-      <div class="modal-footer">
 
             <%= f.submit "Checkout", class: "btn btn-primary" %>
         <% end %>

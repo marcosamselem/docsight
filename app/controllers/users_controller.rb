@@ -26,10 +26,15 @@ class UsersController < ApplicationController
   def show
     @doctor = User.find(params[:id])
     @appointment = Appointment.new
+# ------look for  an appointment for the current doctor being shown------
+    @appointments_doc = Appointment.where(doctor_id: @doctor.id)
+# ---------now  go through reviews looking for multiple appointments for that doctor---------
+    @reviews = Review.where(appointment_id: @appointments_doc.ids)
+    # @reviews = Review.where(appointment_id: @appointmen t.id)
     @date = params[:appointment_date]
     # @doctor_appointments = Appointment.where() the date day == to the form, and the Doctor Id from the doctors table
     # @procedure = params[:procedure]
-    
+
     @doctor.locations
       @markers = @doctor.locations.geocoded.map do |location|
         {

@@ -9,12 +9,14 @@ require "faker"
 
 puts "Cleaning all DB's (Locations, Procedures and Users)"
 Procedure.destroy_all
+Review.destroy_all
+Appointment.destroy_all
 Location.destroy_all
 User.destroy_all
 puts "Seeding db..."
 
 User.create!({email: "marcosa@gmail.com", password: "123456", first_name: "Marcos", last_name: "Amselem", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
-User.create!({email: "miguel@gmail.com", password: "123456", first_name: "Miguel", last_name: "Belo", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
+miguel = User.create!({email: "miguel@gmail.com", password: "123456", first_name: "Miguel", last_name: "Belo", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 User.create!({email: "david@gmail.com", password: "123456", first_name: "David", last_name: "Whitehead", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 User.create!({email: "ai@gmail.com", password: "123456", first_name: "Ai", last_name: "Miyuki", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "female", past_interventions: "None"})
 User.create!({email: "yusuf@gmail.com", password: "123456", first_name: "Yusuf", last_name: "Uras", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
@@ -159,6 +161,7 @@ end
 puts ".....Hospitals created. Creating Doctors....."
 
 100.times do
+
   User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -178,6 +181,24 @@ puts ".....Hospitals created. Creating Doctors....."
   shuffled_locations.take(3).each do |location|
     DoctorsLocation.create!(user_id: User.last.id, location_id: location.id)
   end
+
+
+  appointment = Appointment.create!( location_id: Location.all.first.id,
+    additional_details: "details",
+    symptoms: "headache",
+    start_time: "12:00",
+    end_time: "12:30",
+    status: 0,
+    patient_id: miguel.id,
+    doctor_id: User.last.id,
+  )
+
+  Review.create!(
+    appointment_id: appointment.id,
+    rating: 5,
+    comment: "Lovley doctor"
+  )
+
 end
 
 puts "....Doctors created. Creating procedures for the Specialties...."
@@ -197,4 +218,37 @@ specialty_procedures.each do |specialty, procedures|
   end
 end
 
-puts "Seeding completed. Thank you for your patient ;-) "
+# create appointment
+# create reviews
+puts "seeding a DUMMY appointment"
+first_appointment = Appointment.create!( location_id: Location.all.first.id,
+                  additional_details: "details",
+                  symptoms: "headache",
+                  start_time: "12:00",
+                  end_time: "12:30",
+                  status: 0,
+                  patient_id: miguel.id,
+                  doctor_id: User.last.id,
+                )
+
+Review.create!(
+              appointment_id: first_appointment.id,
+              rating: 5,
+              comment: "Lovley doctor" )
+
+
+# t.bigint "location_id", null: false
+# t.text "additional_details"
+# t.string "symptoms"
+# t.time "start_time"
+# t.time "end_time"
+# t.integer "status", default: 0
+# t.bigint "patient_id"
+# t.bigint "doctor_id"
+# t.datetime "created_at", null: false
+# t.datetime "updated_at", null: false
+# t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+# t.index ["location_id"], name: "index_appointments_on_location_id"
+# t.index ["patient_id"], name: "index_appointments_on_patient_id"
+
+# puts "Seeding completed. Thank you for your patient ;-) "
