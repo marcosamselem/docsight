@@ -22,13 +22,13 @@
   <% end %>
 </div>
 
+<p>Appointments-index-page</p>
 
-
-<div class="container past-appointments my-5">
+<div class="container past-appointments my-5 border border-warning">
   <h3>Previous appointments</h3>
   <% @appointments.each do |appointment| %>
     <% if Time.now > appointment.start_time %>
-      <div class="appointment-card d-flex">
+      <div class="appointment-card d-flex flex-column">
         <div class="appointment-details">
           <p>Dr.<%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %> </p>
           <p><%= appointment.location.address %></p>
@@ -36,8 +36,8 @@
           <p><%= appointment.symptoms %></p>
         </div>
         <div class="cta-buttons">
-          <%= link_to "Add a review", new_appointment_review_path(appointment), class: "btn btn-primary" %>
-          <%= link_to "Book a new appointment with Dr.#{appointment.doctor.first_name}", user_path(appointment.doctor), class: "btn btn-primary"%>
+          <%= link_to "Add a review", new_appointment_review_path(appointment), class: "btn rounded-pill btn-warning" %>
+          <%= link_to "Book a new appointment with Dr.#{appointment.doctor.first_name}", user_path(appointment.doctor), class: "btn rounded-pill btn-warning"%>
         </div>
       </div>
     <% end %>
