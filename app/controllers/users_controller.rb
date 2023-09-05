@@ -31,8 +31,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @doctors = User.where(role: "doctor")
-    @doctor = User.find(params[:id])
+    @doctor = User.find(params[:id]) if User.where(role: "doctor")
     @doctor_appointments = User.find(@doctor.id).appointments_as_doctor
     @date = params[:appointment_date].to_date if params[:appointment_date]
     @procedure = Procedure.find(params[:procedure]).name if params[:procedure]
@@ -47,12 +46,12 @@ class UsersController < ApplicationController
     @appointments_doc = Appointment.where(doctor_id: @doctor.id)
 # ---------now  go through reviews looking for multiple appointments for that doctor---------
     @reviews = Review.where(appointment_id: @appointments_doc.ids)
-
     @markers = @doctor.locations.geocoded.map do |location|
       {
         lat: location.latitude,
         lng: location.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {location: location})
+        info_window_html: render_to_string(partial: "info_window", locals: {location: location}),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end

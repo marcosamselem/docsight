@@ -2,10 +2,9 @@
 
   <div>
 
-  <div class="show-page-card">
+  <div class="show-page-card align-items-center">
     <div class="show-page-photo-card">
-      <%# <%= image_tag @doctor.image_url %> 
-      <p></p>
+      <%= image_tag @doctor.image_url%>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p> Location: <%= @doctor.locations.last.address%></p>
       <%# <a href="/new_user_appointment" class="button">Book</a> %>
@@ -114,7 +113,7 @@
 <%# -----------REVIEW---CARD-----END----------- %>
 
   <%# --------MAP----DIV BELOW------------- %>
-  <div class="sticky" style="width: 100%; height: 600px;"
+  <div class="sticky bord-rad shadow mb-5" style="width: 100%; height: 400px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -134,7 +133,7 @@
 
       <div class="modal-body d-flex">
         <div class="show-page-photo-card mx-3">
-          <%= image_tag @doctor.image_url %>
+          <%= image_tag @doctor.image_url, class: "my-3 bord-rad"%>
           <h2 class="my-3"><strong>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></strong></h2>
           <h2><%= @doctor.specialty %></h2>
         </div>
