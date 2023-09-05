@@ -153,6 +153,36 @@ HOSPITALS = [
   ["Lister Hospital", "Chelsea Bridge Road, London, Greater London, SW1W 8RH"]
 ]
 
+doctor_img = [
+  "https://th.bing.com/th/id/OIP.50yPCijsspiFOg8ZEwqJTwHaJ8?w=142&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.IVwf85npYYUcwRp4EIhqDgHaJm?w=147&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.nmAwZ0-dn7D4KYDzZOegcgHaKA?w=142&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.LczXdrMkR1M0DA0Q6diejQHaIH?w=173&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.7ZuYwrIdy7FFk5IXAI7bcAHaGl?w=214&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.hYd9jPssD4Eo67zNhtk8VQHaFj?w=248&h=186&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.RPRpZ0mTLLrHDqxz4rhZuwHaHp?w=181&h=186&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.s3mQLGK7nHMzwrv3BNgQTAHaEl?w=302&h=187&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.Of1m8q2q5J6my51mKxKlYgHaLH?pid=ImgDet&rs=1",
+  "https://th.bing.com/th/id/R.7b5bd1b5deeb081550e97fabda90b7c9?rik=eKg2cctOemQqsg&pid=ImgRaw&r=0",
+  "https://th.bing.com/th/id/OIP.xiRxoiNopil-klH9J0NKDwAAAA?pid=ImgDet&rs=1",
+  "https://pneumogalati.ro/wp-content/uploads/2019/02/21.png",
+  "https://th.bing.com/th/id/OIP.s_yTNeHlUGiJJ61pP2N7FQHaHa?pid=ImgDet&rs=1",
+  "https://th.bing.com/th/id/OIP.zfr2KNlWOiLcVFsiNTYNoAHaHR?pid=ImgDet&rs=1",
+  "https://urologiabusto.com/wp-content/uploads/2015/09/her_doctor.jpg",
+  "https://th.bing.com/th/id/OIP.DJbw46S2aWnDPzNj7lmdNAHaJ7?pid=ImgDet&w=206&h=275&c=7&dpr=2",
+  "https://th.bing.com/th/id/OIP.7r5_lhmm6nxWL7ScBTXvLAHaLJ?w=115&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.K5U_-Z6FkfK0CUrgJqRNEwHaHa?w=165&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.at0gvIb8x4DjQ-Qsk4zV9QHaLG?w=115&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.JxchiAVoniGXhNs8zjwRiAHaLQ?pid=ImgDet&rs=1",
+  "https://th.bing.com/th/id/OIP.bFrVNH5ilBjVrllRyRiRFgHaI0?w=155&h=184&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.MHxYih57iYiQNOGV2OFtQwHaLH?w=115&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.D_1Wk3dvLUAtJF613RDvOgHaJq?w=126&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.w7n8avrG7JtLrgHJwognEgHaLD?w=120&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.E7pgi5ra0OojybzbQmogAwHaFk?w=240&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.Xb8F13Umor9qB88wkL9f_gHaIb?pid=ImgDet&w=206&h=235&c=7&dpr=2"
+  ]
+
+
 HOSPITALS.each do |hosp|
   Location.create!(name: hosp[0], address: hosp[1])
   # puts "created #{Location.last.name} hospital"
@@ -167,7 +197,7 @@ puts ".....Hospitals created. Creating Doctors....."
     last_name: Faker::Name.last_name,
     bio: Faker::Lorem.sentence,
     phone_number: Faker::PhoneNumber.cell_phone,
-    image_url: Faker::Avatar.image,
+    image_url: doctor_img.sample,
     specialty: specialties.sample,
     email: Faker::Internet.email,
     password: "123456",
