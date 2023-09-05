@@ -1,3 +1,16 @@
+
+a {
+  text-decoration: none;
+// remove all underlines to links
+
+}
+
+a:hover {
+  text-decoration: none;
+  // ----remove all underlines and link color changes on links on hovers
+  color: black;
+}
+
 .card-product {
   overflow: hidden;
   height: 120px;
@@ -6,7 +19,8 @@
   display: flex;
   align-items: center;
   margin-top: 30px;
-}
+  }
+
 
 .card-product img {
   height: 100%;

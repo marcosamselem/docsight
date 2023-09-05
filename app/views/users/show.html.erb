@@ -41,48 +41,75 @@
 
 
   <div class="bio-card">
-    <h1>Bio-card</h1>
+    <br><p><b>Biography </b></p>
 
     <div class="inner">
-        <div><p>Establishment : <%= @doctor.specialty %></p></div>
-        <div><p>Year : 🤯</p></div>
+        <div><p><b>Establishment</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.specialty %></p></div>
+        <div><p><b>Year : ?</b></p></div>
     </div>
 
 
       <div class="expertise">
-        <p>Expertise & Procedures : <%= @doctor.bio %> </p>
+        <p><b>Expertise & Procedures</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.bio %></p>
       </div>
 
 
   </div>
 
-  <div class="bio-card">
-    <h1>Pricing</h1>
-     <% @doctor.procedures.each do |procedure| %>
+    <div class="price-card">
+      <br><p><b>Pricing</b></p>
+        <div class="inside">
 
-      <p>Name: <%= procedure.name%></p> <p>Cost: £ <%= procedure.price %> 💷</p>
-      <p>Duration: <%= procedure.duration %> mins ⏳ </p>
-    <% end %>
+          <table class="table table-borderless">
+
+            <tr>
+              <th>Name</th>
+              <th>Cost</th>
+              <th>Duration</th>
+            </tr>
+
+            <% @doctor.procedures.each do |procedure| %>
+
+            <tr>
+              <th><%= procedure.name%></th>
+              <th>£ <%= procedure.price %></th>
+              <th><%= procedure.duration %> min</th>
+            </tr>
+            <% end %>
+          </table>
+
+
+    </div>
+
   </div>
 
-  <div class="bio-card">
-    <h1>Location</h1>
+  <div class="location-card">
+    <br><p><b>Location</b></p>
+
+    <div class="inside">
     <% @doctor.locations.each do |location| %>
-      📍
+      <i class="fa-solid fa-house-medical fa-lg" style="color: #4a4e69;"></i>
       <%= location.name %>
-      <%= location.address %>
+      <%= location.address %> <br><br>
     <% end %>
+    </div>
+
   </div>
 
 <%# ---------REVIEW CARD----START------------ %>
 <%# ---------FROM usercontroller.rb------- %>
-  <div class="bio-card">
-  <h1>Reviews</h1>
-    <% @reviews.each do |review| %>
-    <p>Rating : <%= review.rating %></p>
-    <p>Comment : <%= review.comment %></p>
+  <div class="review-card">
+  <p><b>Reviews</b></p>
 
+<div class="inside">
+ <% @reviews.each do |review| %>
+    <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+    <p>Comment : <%= review.comment %></p>
     <% end %>
+
+</div>
+
+
   </div>
 <%# -----------REVIEW---CARD-----END----------- %>
 
