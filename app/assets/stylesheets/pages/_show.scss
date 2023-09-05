@@ -13,7 +13,7 @@
 
 
 .show-page-card {
-  overflow: visible;
+  overflow: auto;
   width: 820px;
   height: 304px;
   background: #DDDDDD;
@@ -64,7 +64,7 @@
   }
 
   .bio-card {
-    overflow: hidden;
+    overflow: auto;
     width: 820px;
     height: 290px;
     background: #DDDDDD;
@@ -93,7 +93,7 @@
   }
 
   .review-card {
-    overflow: hidden;
+    overflow: auto;
     width: 820px;
     height: 500px;
     background: #DDDDDD;
