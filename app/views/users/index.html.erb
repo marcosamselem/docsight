@@ -5,17 +5,21 @@
         <div class="wrapmrgn">
           <% @doctors.each do |user| %>
             <%full_name = "#{user.first_name} #{user.last_name}" %>
-            <div class="card-product btn bord-rad">
-            <%# <%=link_to "see profile", user_path, class: "btn"%> 
-              <div class="shadow bord-rad">
-                <%=image_tag user.image_url, class: "img-size"%>
+            <%# ------the whole DIV is now a button taking us to the doctors show page below %>
+            <%= link_to user_path(user) do %>
+
+              <div class="card-product btn bord-rad">
+              <%# <%=link_to "see profile", user_path, class: "btn"  %>
+                <div class="shadow bord-rad">
+                  <%=image_tag user.image_url, class: "img-size"%>
+                </div>
+                <div class="card-product-infos">
+                  <h2><%=full_name %></h2>
+                  <p><%=user.bio%></p>
+                  <%=user.locations.first.name%>
+                </div>
               </div>
-              <div class="card-product-infos">
-                <h2><%=full_name %></h2>
-                <p><%=user.bio%></p>
-                <%=user.locations.first.name%>
-              </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>
