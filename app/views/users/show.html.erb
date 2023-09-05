@@ -4,7 +4,7 @@
 
   <div class="show-page-card">
     <div class="show-page-photo-card">
-      <% image_tag @doctor.image_url %>
+      <%# <%= image_tag @doctor.image_url %> 
       <p></p>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p> Location: <%= @doctor.locations.last.address%></p>

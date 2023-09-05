@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @doctors = User.where(role: "doctor")
     @doctor = User.find(params[:id])
     @doctor_appointments = User.find(@doctor.id).appointments_as_doctor
     @date = params[:appointment_date].to_date if params[:appointment_date]
