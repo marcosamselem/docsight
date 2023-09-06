@@ -15,7 +15,7 @@
 
 // Card of Doctor picture and Schedule
 .show-page-card {
-  // overflow: visible;
+  overflow: auto;
   width: 820px;
   height: 1000px;
   background: #DDDDDD;
@@ -53,10 +53,10 @@
 // }
 
 
-.doctor-details-card {
-    overflow: hidden;
+  .bio-card {
+    overflow: auto;
     width: 820px;
-    height: 290px;
+    height: auto;
     background: #DDDDDD;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     // display: flex;
@@ -68,19 +68,95 @@
   .inner{
     display: flex;
     justify-content: space-between;
-    background-color: #EEEEEE;
+    text-align: left;
+    // background-color: #EEEEEE;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     margin: 30px 20px 20px 20px;
   }
   .expertise{
     text-align: left;
     margin: 30px 20px 20px 20px;
-    background-color: #EEEEEE;
+    // background-color: #EEEEEE;
     border-radius: 10px;
     padding: 5px;
   }
 }
+
+
+  .price-card {
+    overflow: auto;
+    width: 820px;
+    height: auto;
+    background: #DDDDDD;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding: 5px;
+    // display: flex;
+  //  flex-direction: column;
+    // align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+
+    .inside{
+      // display: flex;
+      // justify-content: space-between;
+      text-align: left;
+      // background-color: #EEEEEE;
+      border-radius: 10px;
+      padding: 5px;
+      // margin: 30px 20px 20px 20px;
+    }
+    .table > :not(caption) > * > * {
+      background-color: #DDDDDD;
+    }
+
+  }
+
+  .review-card {
+    overflow: auto;
+    width: 820px;
+    height: auto;
+    background: #DDDDDD;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    // display: flex;
+  //  flex-direction: column;
+    // align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    .inside{
+      // display: flex;
+      // justify-content: space-between;
+      text-align: left;
+      // background-color: #EEEEEE;
+      border-radius: 10px;
+      padding: 5px;
+      // margin: 30px 20px 20px 20px;
+    }
+  }
+
+  .location-card {
+    overflow: auto;
+    width: 820px;
+    height: auto;
+    background: #DDDDDD;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    // display: flex;
+  //  flex-direction: column;
+    // align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+
+    .inside{
+      // display: flex;
+      // justify-content: space-between;
+      text-align: left;
+      // background-color: #EEEEEE;
+      border-radius: 10px;
+      padding: 5px;
+      // margin: 30px 20px 20px 20px;
+    }
+
+  }
 
 
 .review-card {

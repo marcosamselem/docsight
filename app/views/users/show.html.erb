@@ -1,15 +1,17 @@
-<div class="container flexbox-wrapper mt-5" >
 
-  <div class="container doctors-details">
-    <div class="show-page-card">
-      <div class="show-page-photo-card">
-        <% image_tag @doctor.image_url %>
-        <p></p>
-        <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
-        <p> Specialty: <%= @doctor.specialty %></p>
-        <p> Location: <%= @doctor.locations.last.address%></p>
-        <%# <a href="/new_user_appointment" class="button">Book</a> %>
-      </div>
+<div class="container flexbox-wrapper mt-5">
+
+  <div>
+
+  <div class="show-page-card align-items-center">
+    <div class="show-page-photo-card">
+      <%= image_tag @doctor.image_url%>
+      <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
+      <p> Location: <%= @doctor.locations.last.address%></p>
+      <%# <a href="/new_user_appointment" class="button">Book</a> %>
+      <%= link_to "Book", new_user_appointment_path(@doctor), class: "button" %>
+    </div>
+
 
       <div class="show-page-calendar-card">
       <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
@@ -47,55 +49,82 @@
     </div>
 
 
-    <div class="doctor-details-card">
-      <h1>Bio-card</h1>
 
-      <div class="inner">
-          <div><p>Establishment : <%= @doctor.specialty %></p></div>
-          <div><p>Year : 🤯</p></div>
+  <div class="bio-card">
+    <br><p><b>Biography </b></p>
+
+    <div class="inner">
+        <div><p><b>Establishment</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.specialty %></p></div>
+        <div><p><b>Year : ?</b></p></div>
+    </div>
+
+
+      <div class="expertise">
+        <p><b>Expertise & Procedures</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.bio %></p>
       </div>
 
 
-        <div class="expertise">
-          <p>Expertise & Procedures : <%= @doctor.bio %> </p>
-        </div>
+    </div>
+
+  <div class="price-card">
+      <br><p><b>Pricing</b></p>
+        <div class="inside">
+
+          <table class="table table-borderless">
+
+            <tr>
+              <th>Name</th>
+              <th>Cost</th>
+              <th>Duration</th>
+            </tr>
+
+            <% @doctor.procedures.each do |procedure| %>
+
+            <tr>
+              <th><%= procedure.name%></th>
+              <th>£ <%= procedure.price %></th>
+              <th><%= procedure.duration %> min</th>
+            </tr>
+            <% end %>
+          </table>
 
 
     </div>
 
-    <div class="doctor-details-card">
-      <h1>Pricing</h1>
-      <% @doctor.procedures.each do |procedure| %>
+  </div>
 
-        <p>Name: <%= procedure.name%></p> <p>Cost: £ <%= procedure.price %> 💷</p>
-        <p>Duration: <%= procedure.duration %> mins ⏳ </p>
-      <% end %>
+  <div class="location-card">
+    <br><p><b>Location</b></p>
+
+    <div class="inside">
+    <% @doctor.locations.each do |location| %>
+      <i class="fa-solid fa-house-medical fa-lg" style="color: #4a4e69;"></i>
+      <%= location.name %>
+      <%= location.address %> <br><br>
+    <% end %>
     </div>
 
-    <div class="doctor-details-card">
-      <h1>Location</h1>
-      <% @doctor.locations.each do |location| %>
-        📍
-        <%= location.name %>
-        <%= location.address %>
-      <% end %>
-    </div>
+  </div>
 
-    <%# ---------REVIEW CARD----START------------ %>
-    <%# ---------FROM usercontroller.rb------- %>
-    <div class="doctor-details-card">
-    <h1>Reviews</h1>
-      <% @reviews.each do |review| %>
-      <p>Rating : <%= review.rating %></p>
-      <p>Comment : <%= review.comment %></p>
+<%# ---------REVIEW CARD----START------------ %>
+<%# ---------FROM usercontroller.rb------- %>
+  <div class="review-card">
+  <p><b>Reviews</b></p>
 
-      <% end %>
-    </div>
-    <%# -----------REVIEW---CARD-----END----------- %>
+<div class="inside">
+ <% @reviews.each do |review| %>
+    <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+    <p>Comment : <%= review.comment %></p>
+    <% end %>
+
+</div>
+
+
+
   </div>
 
   <%# --------MAP----DIV BELOW------------- %>
-  <div class="sticky" style="width: 100%; height: 600px;"
+  <div class="sticky bord-rad shadow mb-5" style="width: 100%; height: 400px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
