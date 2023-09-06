@@ -1,0 +1,10 @@
+<p>reviews-new-page</p>
+
+
+<div class="container border border-info mb-3">
+  <%= simple_form_for([@appointment, @review]) do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :rating %>
+    <%= f.submit %>
+  <% end %>
+</div>

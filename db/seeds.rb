@@ -9,12 +9,14 @@ require "faker"
 
 puts "Cleaning all DB's (Locations, Procedures and Users)"
 Procedure.destroy_all
+Review.destroy_all
+Appointment.destroy_all
 Location.destroy_all
 User.destroy_all
 puts "Seeding db..."
 
 User.create!({email: "marcosa@gmail.com", password: "123456", first_name: "Marcos", last_name: "Amselem", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
-User.create!({email: "miguel@gmail.com", password: "123456", first_name: "Miguel", last_name: "Belo", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
+miguel = User.create!({email: "miguel@gmail.com", password: "123456", first_name: "Miguel", last_name: "Belo", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 User.create!({email: "david@gmail.com", password: "123456", first_name: "David", last_name: "Whitehead", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 User.create!({email: "ai@gmail.com", password: "123456", first_name: "Ai", last_name: "Miyuki", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "female", past_interventions: "None"})
 User.create!({email: "yusuf@gmail.com", password: "123456", first_name: "Yusuf", last_name: "Uras", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
@@ -151,6 +153,36 @@ HOSPITALS = [
   ["Lister Hospital", "Chelsea Bridge Road, London, Greater London, SW1W 8RH"]
 ]
 
+doctor_img = [
+  "https://th.bing.com/th/id/OIP.50yPCijsspiFOg8ZEwqJTwHaJ8?w=142&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.IVwf85npYYUcwRp4EIhqDgHaJm?w=147&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.nmAwZ0-dn7D4KYDzZOegcgHaKA?w=142&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.LczXdrMkR1M0DA0Q6diejQHaIH?w=173&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.7ZuYwrIdy7FFk5IXAI7bcAHaGl?w=214&h=191&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.hYd9jPssD4Eo67zNhtk8VQHaFj?w=248&h=186&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.RPRpZ0mTLLrHDqxz4rhZuwHaHp?w=181&h=186&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.s3mQLGK7nHMzwrv3BNgQTAHaEl?w=302&h=187&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.Of1m8q2q5J6my51mKxKlYgHaLH?pid=ImgDet&rs=1",
+  "https://th.bing.com/th/id/R.7b5bd1b5deeb081550e97fabda90b7c9?rik=eKg2cctOemQqsg&pid=ImgRaw&r=0",
+  "https://th.bing.com/th/id/OIP.xiRxoiNopil-klH9J0NKDwAAAA?pid=ImgDet&rs=1",
+  "https://pneumogalati.ro/wp-content/uploads/2019/02/21.png",
+  "https://th.bing.com/th/id/OIP.s_yTNeHlUGiJJ61pP2N7FQHaHa?pid=ImgDet&rs=1",
+  "https://th.bing.com/th/id/OIP.zfr2KNlWOiLcVFsiNTYNoAHaHR?pid=ImgDet&rs=1",
+  "https://urologiabusto.com/wp-content/uploads/2015/09/her_doctor.jpg",
+  "https://th.bing.com/th/id/OIP.DJbw46S2aWnDPzNj7lmdNAHaJ7?pid=ImgDet&w=206&h=275&c=7&dpr=2",
+  "https://th.bing.com/th/id/OIP.7r5_lhmm6nxWL7ScBTXvLAHaLJ?w=115&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.K5U_-Z6FkfK0CUrgJqRNEwHaHa?w=165&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.at0gvIb8x4DjQ-Qsk4zV9QHaLG?w=115&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.JxchiAVoniGXhNs8zjwRiAHaLQ?pid=ImgDet&rs=1",
+  "https://th.bing.com/th/id/OIP.bFrVNH5ilBjVrllRyRiRFgHaI0?w=155&h=184&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.MHxYih57iYiQNOGV2OFtQwHaLH?w=115&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.D_1Wk3dvLUAtJF613RDvOgHaJq?w=126&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.w7n8avrG7JtLrgHJwognEgHaLD?w=120&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.E7pgi5ra0OojybzbQmogAwHaFk?w=240&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+  "https://th.bing.com/th/id/OIP.Xb8F13Umor9qB88wkL9f_gHaIb?pid=ImgDet&w=206&h=235&c=7&dpr=2"
+  ]
+
+
 HOSPITALS.each do |hosp|
   Location.create!(name: hosp[0], address: hosp[1])
   # puts "created #{Location.last.name} hospital"
@@ -159,12 +191,13 @@ end
 puts ".....Hospitals created. Creating Doctors....."
 
 100.times do
+
   User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     bio: Faker::Lorem.sentence,
     phone_number: Faker::PhoneNumber.cell_phone,
-    image_url: Faker::Avatar.image,
+    image_url: doctor_img.sample,
     specialty: specialties.sample,
     email: Faker::Internet.email,
     password: "123456",
@@ -178,6 +211,24 @@ puts ".....Hospitals created. Creating Doctors....."
   shuffled_locations.take(3).each do |location|
     DoctorsLocation.create!(user_id: User.last.id, location_id: location.id)
   end
+
+
+  appointment = Appointment.create!( location_id: Location.all.first.id,
+    additional_details: "details",
+    symptoms: "headache",
+    start_time: "12:00",
+    end_time: "12:30",
+    status: 0,
+    patient_id: miguel.id,
+    doctor_id: User.last.id,
+  )
+
+  Review.create!(
+    appointment_id: appointment.id,
+    rating: 5,
+    comment: "Lovley doctor"
+  )
+
 end
 
 puts "....Doctors created. Creating procedures for the Specialties...."
@@ -197,4 +248,37 @@ specialty_procedures.each do |specialty, procedures|
   end
 end
 
-puts "Seeding completed. Thank you for your patient ;-) "
+# create appointment
+# create reviews
+puts "seeding a DUMMY appointment"
+first_appointment = Appointment.create!( location_id: Location.all.first.id,
+                  additional_details: "details",
+                  symptoms: "headache",
+                  start_time: "12:00",
+                  end_time: "12:30",
+                  status: 0,
+                  patient_id: miguel.id,
+                  doctor_id: User.last.id,
+                )
+
+Review.create!(
+              appointment_id: first_appointment.id,
+              rating: 5,
+              comment: "Lovley doctor" )
+
+
+# t.bigint "location_id", null: false
+# t.text "additional_details"
+# t.string "symptoms"
+# t.time "start_time"
+# t.time "end_time"
+# t.integer "status", default: 0
+# t.bigint "patient_id"
+# t.bigint "doctor_id"
+# t.datetime "created_at", null: false
+# t.datetime "updated_at", null: false
+# t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+# t.index ["location_id"], name: "index_appointments_on_location_id"
+# t.index ["patient_id"], name: "index_appointments_on_patient_id"
+
+# puts "Seeding completed. Thank you for your patient ;-) "
