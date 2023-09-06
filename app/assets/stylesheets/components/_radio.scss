@@ -23,14 +23,14 @@
   box-sizing: border-box;
   font-size: 12px;
   text-align: center  ;
-  padding: 10px 10px 30px 10px;
+  padding: 10px 10px 20px 10px;
   border: 1px solid #EAEAEA;
   border-radius: 60px;
-  background-color: white;
+  background-color: $secondary-color;
 }
 
 .category-selector:checked + label {
-  color: black !important;
-  background-color: #FFC65A;
-  border-color: #FFC65A;
+  color: white !important;
+  background-color: $button-color;
+  border-color: $button-color;
 }
