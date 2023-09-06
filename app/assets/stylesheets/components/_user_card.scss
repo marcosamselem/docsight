@@ -24,7 +24,7 @@ a:hover {
 
 .card-product img {
   height: 100%;
-  width: 120px;
+  // width: 120px;
   object-fit: cover;
 }
 
@@ -68,8 +68,7 @@ a:hover {
 }
 
 .img-size{
- min-height: 120px;
- max-height: 120px;
-background-size: cover;
-border-radius: 10px;
+  min-height: 150px;
+  max-height: 150px;
+  border-radius: 10px;
 }

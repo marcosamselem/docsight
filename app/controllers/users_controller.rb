@@ -33,16 +33,6 @@ class UsersController < ApplicationController
   def show
     @doctor = User.find(params[:id]) if User.where(role: "doctor")
     @doctor_appointments = User.find(@doctor.id).appointments_as_doctor
-    # @doctor_appointments = JSON.parse(@doctor_appointments.map(&:attributes).to_json)
-    # obj = {}
-    # test = []
-    # @doctor_appointments.each do |object|
-    #   object.each do |k, v|
-    #     obj[k] = v
-    #   end
-    #   test << obj
-    # end
-    # @doctor_appointments = test
     @date = params[:appointment_date].to_date if params[:appointment_date]
     @procedure = Procedure.find(params[:procedure_id]).name if params[:procedure_id]
     @real_procedure = Procedure.find(params[:procedure_id]) if params[:procedure_id]
