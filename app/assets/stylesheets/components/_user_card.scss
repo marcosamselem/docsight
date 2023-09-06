@@ -71,4 +71,7 @@ a:hover {
   min-height: 150px;
   max-height: 150px;
   border-radius: 10px;
+  min-width: 150px;
+  max-width: 150px;
+  object-fit: contain !important;
 }
