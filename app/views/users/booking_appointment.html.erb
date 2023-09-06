@@ -12,11 +12,11 @@
           <div>
             <h5>Summary:</h5>
             <% if params[:procedure_id] %>
-              <ul>
+              <ol>
                 <li>Appointment for: <%= @real_procedure.name %></li>
                 <li>Duration: <%= @real_procedure.duration%> minutes</li>
                 <li>Cost: £<%= number_with_delimiter(@real_procedure.price)%></li>
-              </ul>
+              </ol>
             <% end %>
           </div>
         </div>
@@ -33,8 +33,8 @@
             <%= hidden_field_tag 'date', @date, data: {the_form_target: "modalDate"} %>
             <%= hidden_field_tag 'procedure', @procedure, data: {the_form_target: "modalProcedure"} %>
             <%= hidden_field_tag 'doctor_appointments', @doctor_appointments, data: {the_form_target: "modalDoctorAppointment"} %>
-            <%= f.input :symptoms %>
-            <%= f.input :additional_details %>
+            <%= f.input :symptoms, input_html: { class: 'background-color-sec' } %>
+            <%= f.input :additional_details, input_html: { class: 'background-color-sec' } %>
             <%= f.submit "Checkout", class: "btn btn-primary" %>
           <% end %>
       </div>
