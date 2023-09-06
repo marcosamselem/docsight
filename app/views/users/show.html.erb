@@ -101,8 +101,14 @@
   <p><b>Reviews</b></p>
 
 <div class="inside">
- <% @reviews.each do |review| %>
-    <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+  <% @reviews.each do |review| %>
+    <%# <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+     <p> Rating :
+        <%  review.rating.to_i.times do  %>
+        <i class="fa-solid fa-star fa-beat" style="color: #ffb503;"></i>
+          <% end %></p>
+
+
     <p>Comment : <%= review.comment %></p>
     <% end %>
 
