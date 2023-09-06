@@ -7,12 +7,16 @@
     <div class="show-page-photo-card">
       <%= image_tag @doctor.image_url%>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
-      <p> Location: <%= @doctor.locations.last.address%></p>
-      <%# <a href="/new_user_appointment" class="button">Book</a> %>
-      <%= link_to "Book", new_user_appointment_path(@doctor), class: "button" %>
+      <% review_avg = 0 %>
+      <p><% @reviews.each do |review| %>
+          <% review_avg += review.rating %>
+        <% end %>
+        <% (review_avg / @reviews.length).times do  %>
+          <i class="fa-solid fa-star fa-lg" style="color: #ffb503;"></i>
+        <% end %>
+      </p>
+      <p> Specialty: <%= @doctor.specialty%></p>
     </div>
-
-
       <div class="show-page-calendar-card">
       <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
         <div class="calendar d-flex justify-content-between">
