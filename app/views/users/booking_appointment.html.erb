@@ -1,0 +1,44 @@
+<div class="big-container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/MiguelBelo95/Codeacademy/main/background.png); background-repeat: round;">
+  <div class="blur">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-6 col-md-6">
+        <div class="d-flex my-2">
+          <div class="show-page-photo-card mx-3">
+            <%= image_tag @doctor.image_url %>
+            <h2 class="my-3"><strong>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></strong></h2>
+            <h2><%= @doctor.specialty %></h2>
+          </div>
+          <div>
+            <h5>Summary:</h5>
+            <% if params[:procedure_id] %>
+              <ul>
+                <li>Appointment for: <%= @real_procedure.name %></li>
+                <li>Duration: <%= @real_procedure.duration%> minutes</li>
+                <li>Cost: £<%= number_with_delimiter(@real_procedure.price)%></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+        <div class="border-top">
+          <%= simple_form_for [@doctor, @appointment] do |f| %>
+              <%= f.input :start_time,
+                as: :radio_buttons,
+                collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'category-wrapper',
+                item_wrapper_class: 'category-item',
+                input_html: {class: 'category-selector'},
+                collection: @available_timings %>
+            <%# <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
+            <%= hidden_field_tag 'date', @date, data: {the_form_target: "modalDate"} %>
+            <%= hidden_field_tag 'procedure', @procedure, data: {the_form_target: "modalProcedure"} %>
+            <%= hidden_field_tag 'doctor_appointments', @doctor_appointments, data: {the_form_target: "modalDoctorAppointment"} %>
+            <%= f.input :symptoms %>
+            <%= f.input :additional_details %>
+            <%= f.submit "Checkout", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

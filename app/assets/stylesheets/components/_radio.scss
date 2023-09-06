@@ -1,0 +1,36 @@
+.category-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 12px 8px;
+}
+
+.category-item {
+  flex: 0 0 30%;
+
+  &:hover {
+    transform: scale(1.05)
+  }
+}
+
+.category-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.category-selector + label {
+  display: block;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-size: 12px;
+  text-align: center  ;
+  padding: 10px 10px 30px 10px;
+  border: 1px solid #EAEAEA;
+  border-radius: 60px;
+  background-color: white;
+}
+
+.category-selector:checked + label {
+  color: black !important;
+  background-color: #FFC65A;
+  border-color: #FFC65A;
+}
