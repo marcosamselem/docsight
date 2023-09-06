@@ -1,4 +1,4 @@
-<div class="container flexbox-wrapper mt-5">
+<div class="container flexbox-wrapper mt-5" >
 
   <div class="container doctors-details">
     <div class="show-page-card">
@@ -11,37 +11,43 @@
         <%# <a href="/new_user_appointment" class="button">Book</a> %>
       </div>
 
-      <div class="show-page-calander-card">
+      <div class="show-page-calendar-card">
       <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
-        <div class="calander d-flex justify-content-center">
+        <div class="calendar d-flex justify-content-between">
           <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
-          <%= form_with method: :get, class: "" do |f| %>
-            <%= f.text_field :appointment_date,
-              value: params[:appointment_date],
-              class: "form-control",
-              hidden: true,
-              placeholder: "Type a keyword",
-              # The Controller should Listen for a submit and capture the params[:appointment_date]
-              data: { controller: "datepicker", action: "click->setDate" , target: "appointment_date" }
-            %>
-            <div class="category-wrapper">
-              <% @doctor.procedures.each do |procedure| %>
-                <div class="category-item">
-                  <%= f.radio_button :procedure_id, procedure.id, class: 'form-check-input radio_buttons required category-selector', data: { style: 'ruby' }, id: "snippet_category_id_#{procedure.id}" %>
-                  <%= f.label "snippet_category_id_#{procedure.id}", procedure.name, class: 'form-check-label collection_radio_buttons' %>
-                </div>
-              <% end %>
+          <%= form_with url: booking_appointment_path(
+            params[:id],
+            appointment_date: params[:appointment_date],
+            procedure_id: params[:procedure_id],
+            ), method: :get do |f| %>
+            <div class="calendar-wrapper">
+              <%= f.text_field :appointment_date,
+                value: params[:appointment_date],
+                class: "form-control",
+                hidden: true,
+                placeholder: "Type a keyword",
+                # The Controller should Listen for a submit and capture the params[:appointment_date]
+                data: { controller: "datepicker" }
+              %>
+              <div class="category-wrapper">
+                <% @doctor.procedures.each do |procedure| %>
+                  <div class="category-item">
+                    <%= f.radio_button :procedure_id, procedure.id, class: 'form-check-input radio_buttons required category-selector', data: { style: 'ruby' }, id: "snippet_category_id_#{procedure.id}" %>
+                    <%= f.label "snippet_category_id_#{procedure.id}", procedure.name, class: 'form-check-label collection_radio_buttons' %>
+                  </div>
+                <% end %>
+              </div>
             </div>
             <%# We need to add a Procedure dropdown to get its duration %>
-            <%= submit_tag "Check Availability", class: "btn btn-primary mt-3",
-              data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
+            <%= submit_tag "Check Availability", class: "btn btn-primary mt-3"
+              %>
           <% end %>
         </div>
       </div>
     </div>
 
 
-    <div class="bio-card">
+    <div class="doctor-details-card">
       <h1>Bio-card</h1>
 
       <div class="inner">
@@ -57,7 +63,7 @@
 
     </div>
 
-    <div class="bio-card">
+    <div class="doctor-details-card">
       <h1>Pricing</h1>
       <% @doctor.procedures.each do |procedure| %>
 
@@ -66,7 +72,7 @@
       <% end %>
     </div>
 
-    <div class="bio-card">
+    <div class="doctor-details-card">
       <h1>Location</h1>
       <% @doctor.locations.each do |location| %>
         📍
@@ -77,7 +83,7 @@
 
     <%# ---------REVIEW CARD----START------------ %>
     <%# ---------FROM usercontroller.rb------- %>
-    <div class="bio-card">
+    <div class="doctor-details-card">
     <h1>Reviews</h1>
       <% @reviews.each do |review| %>
       <p>Rating : <%= review.rating %></p>
@@ -114,22 +120,25 @@
             <h2><%= @doctor.specialty %></h2>
           </div>
           <div>
-            <p>Please choose the Procedure below:</p>
-            <ol>
-            <% @doctor.procedures.each do |p| %>
-                <li><%= p.name %> takes <%= p.duration %> minutes and costs £<%= number_with_delimiter(p.price)%></li>
+            <h5>Summary:</h5>
+            <% if params[:procedure_id] %>
+              <ul>
+                <li>Appointment for: <%= @real_procedure.name %></li>
+                <li>Duration: <%= @real_procedure.duration%> minutes</li>
+                <li>Cost: £<%= number_with_delimiter(@real_procedure.price)%></li>
+              </ul>
             <% end %>
-            </ol>
           </div>
         </div>
         <div class="modal-body border-top">
           <%= simple_form_for [@doctor, @appointment] do |f| %>
             <%= f.input :start_time, as: :time, html5: true, input_html: { value: @date } %>
-            <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
+            <%# <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
             <%= hidden_field_tag 'date', @date %>
             <%= hidden_field_tag 'procedure', @procedure %>
             <%= hidden_field_tag 'doctor_appointments', @doctor_appointments %>
             <%= f.input :symptoms %>
+            <%= f.input :additional_details %>
             <%= f.submit "Checkout", class: "btn btn-primary" %>
           <% end %>
         </div>

@@ -1,10 +1,15 @@
 .category-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 12px 8px;
 }
 
 .category-item {
   flex: 0 0 30%;
+
+  &:hover {
+    transform: scale(1.05)
+  }
 }
 
 .category-selector {
@@ -16,12 +21,11 @@
   display: block;
   cursor: pointer;
   box-sizing: border-box;
-  width: 100%;
   font-size: 12px;
-  text-align: left;
+  text-align: center  ;
   padding: 10px 10px 30px 10px;
   border: 1px solid #EAEAEA;
-  border-radius: 4px;
+  border-radius: 60px;
   background-color: white;
 }
 

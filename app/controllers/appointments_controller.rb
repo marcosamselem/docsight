@@ -19,8 +19,8 @@ class AppointmentsController < ApplicationController
     year = params[:date].to_date.year
     month = params[:date].to_date.month
     day = params[:date].to_date.day
-    hour = params[:appointment][:start_time].to_time.hour
-    minute = params[:appointment][:start_time].to_time.min
+    hour = params[:appointment][:start_time]
+    minute = 0.to_s
     @appointment.start_time = Time.new(year, month, day, hour, minute, 0, 0)
     @appointment.end_time = Time.new(year, month, day, hour, minute, 0, 0) + (procedure_duration * 60)
     if @appointment.save
@@ -41,6 +41,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:symptoms, :start_time, :end_time)
+    params.require(:appointment).permit(:symptoms, :start_time, :additional_details)
   end
 end

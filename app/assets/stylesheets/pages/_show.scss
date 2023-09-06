@@ -1,7 +1,9 @@
+// Flexing the Container that has Map and Doctor's cards
 .flexbox-wrapper {
   display: flex;
 }
 
+// Just for the Map
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -11,7 +13,7 @@
   margin-left: 20px;
 }
 
-
+// Card of Doctor picture and Schedule
 .show-page-card {
   // overflow: visible;
   width: 820px;
@@ -22,6 +24,8 @@
   margin-bottom: 20px;
 }
 
+
+// Container of Card profile picture and name
 .show-page-photo-card{
   width: 200px;
   // height: 200px;
@@ -34,9 +38,7 @@
     height: 113px;
 
   }
-}
 
-.show-page-photo-card  {
   h2 {
     font-size: large;
   }
@@ -46,25 +48,12 @@
     }
 }
 
-.show-page-calander-card {
-  width: 502px;
-  height: 211px;
+// Calendar Card with sevaral procedures
+// .show-page-calendar-card {
+// }
 
-  background-color: #DDDDDD;
-  border-radius: 10px;
-  margin-left: 20px;
 
-}
-
-.show-page-calander-card h2{
-  text-align: center;
-}
-
-.calander{
-  text-align: center;
-}
-
-  .bio-card {
+.doctor-details-card {
     overflow: hidden;
     width: 820px;
     height: 290px;
@@ -93,6 +82,7 @@
   }
 }
 
+
 .review-card {
   overflow: hidden;
   width: 820px;
@@ -106,6 +96,7 @@
   margin-bottom: 20px;
 }
 
+// For Modal
 .button {
   background-color: #4A4E69;
   border: none;
@@ -127,6 +118,15 @@
 }
 
 
+.calendar {
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.calendar-wrapper {
+  display: flex;
+}
 
 #exampleModal {
   background-color: rgba(0, 0, 0, 0.5); /* Set the background color with opacity */
