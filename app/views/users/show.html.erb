@@ -1,43 +1,53 @@
+
 <div class="container flexbox-wrapper mt-5">
 
   <div>
 
-  <div class="show-page-card">
+  <div class="show-page-card align-items-center">
     <div class="show-page-photo-card">
-      <%# <%= image_tag @doctor.image_url %> 
-      <p></p>
+      <%= image_tag @doctor.image_url%>
       <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
       <p> Location: <%= @doctor.locations.last.address%></p>
       <%# <a href="/new_user_appointment" class="button">Book</a> %>
       <%= link_to "Book", new_user_appointment_path(@doctor), class: "button" %>
     </div>
 
-    <div class="show-page-calander-card">
-    <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
-      <div class="calander d-flex justify-content-center">
-        <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
-        <%= form_with method: :get, class: "d-flex flex-column" do |f| %>
-          <%= f.text_field :appointment_date,
+
+      <div class="show-page-calendar-card">
+      <%# 1. Controller to instantiate a Controller 2. Data-Target replaces the querySelector 3. Data-Action == eventListener %>
+        <div class="calendar d-flex justify-content-between">
+          <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
+          <%= form_with url: booking_appointment_path(
+            params[:id],
+            appointment_date: params[:appointment_date],
+            procedure_id: params[:procedure_id],
+            ), method: :get do |f| %>
+            <div class="calendar-wrapper">
+              <%= f.text_field :appointment_date,
                 value: params[:appointment_date],
                 class: "form-control",
                 hidden: true,
                 placeholder: "Type a keyword",
                 # The Controller should Listen for a submit and capture the params[:appointment_date]
-                data: { controller: "datepicker", action: "click->setDate" , target: "appointment_date" }
-            %>
-            <%= f.collection_radio_buttons :procedure, @doctor.procedures,
-              :id,
-              :name,
-              { value_method: :id },
-              { wrapper_tag: :div, wrapper_class: "category-wrapper", item_wrapper_class: "category-item", item_wrapper_tag: :div, class: "category-selector" }
-            %>
-              <%# We need to add a Procedure dropdown to get its duration %>
-          <%= submit_tag "Check Availability", class: "btn btn-primary mt-3",
-           data: { bs_toggle: "modal", bs_target: "#exampleModal"} %>
-        <% end %>
+                data: { controller: "datepicker" }
+              %>
+              <div class="category-wrapper">
+                <% @doctor.procedures.each do |procedure| %>
+                  <div class="category-item">
+                    <%= f.radio_button :procedure_id, procedure.id, class: 'form-check-input radio_buttons required category-selector', data: { style: 'ruby' }, id: "snippet_category_id_#{procedure.id}" %>
+                    <%= f.label "snippet_category_id_#{procedure.id}", procedure.name, class: 'form-check-label collection_radio_buttons' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <%# We need to add a Procedure dropdown to get its duration %>
+            <%= submit_tag "Check Availability", class: "btn btn-primary mt-3"
+              %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+
 
 
   <div class="bio-card">
@@ -54,9 +64,9 @@
       </div>
 
 
-  </div>
+    </div>
 
-    <div class="price-card">
+  <div class="price-card">
       <br><p><b>Pricing</b></p>
         <div class="inside">
 
@@ -102,62 +112,71 @@
   <p><b>Reviews</b></p>
 
 <div class="inside">
- <% @reviews.each do |review| %>
-    <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+  <% @reviews.each do |review| %>
+    <%# <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+     <p> Rating :
+        <%  review.rating.to_i.times do  %>
+        <i class="fa-solid fa-star fa-beat" style="color: #ffb503;"></i>
+          <% end %></p>
+
+
     <p>Comment : <%= review.comment %></p>
     <% end %>
 
 </div>
 
 
+
   </div>
-<%# -----------REVIEW---CARD-----END----------- %>
 
   <%# --------MAP----DIV BELOW------------- %>
-  <div class="sticky" style="width: 100%; height: 600px;"
+  <div class="sticky bord-rad shadow mb-5" style="width: 100%; height: 400px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-<%# -------------MAP----DIV-----END------------- %>
+  <%# -------------MAP----DIV-----END------------- %>
 
 
 
 
-<!-- Modal -->
-<div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body d-flex">
-        <div class="show-page-photo-card mx-3">
-          <%= image_tag @doctor.image_url %>
-          <h2 class="my-3"><strong>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></strong></h2>
-          <h2><%= @doctor.specialty %></h2>
+  <!-- Modal -->
+  <div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div>
-          <p>Please choose the Procedure below:</p>
-          <ol>
-          <% @doctor.procedures.each do |p| %>
-              <li><%= p.name %> takes <%= p.duration %> minutes and costs £<%= number_with_delimiter(p.price)%></li>
+
+        <div class="modal-body d-flex">
+          <div class="show-page-photo-card mx-3">
+            <%= image_tag @doctor.image_url %>
+            <h2 class="my-3"><strong>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></strong></h2>
+            <h2><%= @doctor.specialty %></h2>
+          </div>
+          <div>
+            <h5>Summary:</h5>
+            <% if params[:procedure_id] %>
+              <ul>
+                <li>Appointment for: <%= @real_procedure.name %></li>
+                <li>Duration: <%= @real_procedure.duration%> minutes</li>
+                <li>Cost: £<%= number_with_delimiter(@real_procedure.price)%></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-body border-top">
+          <%= simple_form_for [@doctor, @appointment] do |f| %>
+            <%= f.input :start_time, as: :time, html5: true, input_html: { value: @date } %>
+            <%# <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
+            <%= hidden_field_tag 'date', @date %>
+            <%= hidden_field_tag 'procedure', @procedure %>
+            <%= hidden_field_tag 'doctor_appointments', @doctor_appointments %>
+            <%= f.input :symptoms %>
+            <%= f.input :additional_details %>
+            <%= f.submit "Checkout", class: "btn btn-primary" %>
           <% end %>
-          </ol>
         </div>
-      </div>
-      <div class="modal-body border-top">
-        <%= simple_form_for [@doctor, @appointment] do |f| %>
-          <%= f.input :start_time, as: :time, html5: true, input_html: { value: @date } %>
-          <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
-          <%= hidden_field_tag 'date', @date %>
-          <%= hidden_field_tag 'procedure', @procedure %>
-          <%= hidden_field_tag 'doctor_appointments', @doctor_appointments %>
-          <%= f.input :symptoms %>
-          <%= f.submit "Checkout", class: "btn btn-primary" %>
-        <% end %>
       </div>
     </div>
-  </div>
 </div>

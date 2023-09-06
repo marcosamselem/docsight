@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   end
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/users/:id/booking_appointment", to: 'users#booking_appointment', as: 'booking_appointment'
   resources :users, only: [:show]
 end

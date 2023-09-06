@@ -1,0 +1,8 @@
+.big-container {
+  min-height: 100vh;
+}
+
+.blur {
+  min-height: inherit;
+  backdrop-filter: blur(8px)
+}
