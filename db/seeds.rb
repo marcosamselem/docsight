@@ -284,57 +284,53 @@ puts ".....Hospitals created. Creating Doctors....."
   shuffled_locations.take(3).each do |location|
     DoctorsLocation.create!(user_id: User.last.id, location_id: location.id)
   end
-
-
-# -----------------start making appointments--FOR ORTHOPAEDIC DOCTORS ONLY------------
-puts ".....Creating appointments for Ortho 🩻 💀 ....."
-
-ortho_doc = User.where(role: "doctor", specialty: "Orthopaedics")
-
-ortho_doc.each_with_index do |doc, i|
-  5.times do
-    appointment = Appointment.create!( location_id: Location.all.first.id,
-      additional_details: "details",
-      symptoms: "broken hand",
-      start_time: "#{13 + i}:00",
-      end_time: "#{13 + i}:30",
-      status: 0,
-      patient_id: ai.id,
-      doctor_id: doc.id,
-    )
-# ---------------START creating ratings-------------
-puts ".....Creating ratings for Ortho 😷 🤡 ....."
-    doc_rating.sample(5).each do |rating|
-      Review.create!(
-        appointment_id: appointment.id,
-        rating: rating[:rating],
-        comment: rating[:comment]
-      )
-    end
-
-# -------end creating ratings--loop----
-  end
 end
+  # -----------------start making appointments--FOR ORTHOPAEDIC DOCTORS ONLY------------
+  puts ".....Creating appointments for Ortho 🩻 💀 ....."
 
+  ortho_doc = User.where(role: "doctor", specialty: "Orthopaedics")
+
+  ortho_doc.each_with_index do |doc, i|
+    5.times do
+      appointment = Appointment.create!( location_id: Location.all.first.id,
+        additional_details: "details",
+        symptoms: "broken hand",
+        start_time: "#{13 + i}:00",
+        end_time: "#{13 + i}:30",
+        status: 0,
+        patient_id: ai.id,
+        doctor_id: doc.id,
+      )
+      # ---------------START creating ratings-------------
+      puts ".....Creating ratings for Ortho 😷 🤡 ....."
+      doc_rating.sample(5).each do |rating|
+        Review.create!(
+          appointment_id: appointment.id,
+          rating: rating[:rating],
+          comment: rating[:comment]
+        )
+      end
+    # -------end creating ratings--loop----
+    end
+    # ----end of orthodoc.each
+  end
 # -------------end making appointments--------------
 
-  appointment = Appointment.create!( location_id: Location.all.first.id,
-    additional_details: "details",
-    symptoms: "headache",
-    start_time: "12:00",
-    end_time: "12:30",
-    status: 0,
-    patient_id: miguel.id,
-    doctor_id: User.last.id,
-  )
+  # appointment = Appointment.create!( location_id: Location.all.first.id,
+  #   additional_details: "details",
+  #   symptoms: "headache",
+  #   start_time: "12:00",
+  #   end_time: "12:30",
+  #   status: 0,
+  #   patient_id: miguel.id,
+  #   doctor_id: User.last.id,
+  # )
 
-  Review.create!(
-    appointment_id: appointment.id,
-    rating: 5,
-    comment: "Lovley doctor"
-  )
-
-end
+  # Review.create!(
+  #   appointment_id: appointment.id,
+  #   rating: 5,
+  #   comment: "Lovley doctor"
+  # )
 
 puts "....Doctors created. Creating procedures for the Specialties...."
 
