@@ -1,9 +1,16 @@
 <%# Let's make a modal on this, no? %>
-
-<div class="container border border-info mb-3">
-  <%= simple_form_for([@appointment, @review]) do |f| %>
-    <%= f.input :comment %>
-    <%= f.input :rating %>
-    <%= f.submit %>
-  <% end %>
+<div class="bcg-colu justify-content-between p-5 container margin-at-top">
+  <div class="text-center">
+  <h2>Tell other people about your experience with Dr. <%=@appointment.doctor.first_name%> <%=@appointment.doctor.last_name%></h2>
+  </div>
+    <div class="mt-5">
+      <%= simple_form_for([@appointment, @review]) do |f| %>
+        <%= f.input :comment %>
+        <%= f.input :rating, collection: [1, 2, 3, 4, 5]%>
+        <div class="d-flex justify-content-center mt-4">
+          <%= f.submit "Review!", class: "btn btn-primary set-opa marg-leftt" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
