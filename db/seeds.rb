@@ -292,11 +292,12 @@ end
 
   ortho_doc.each_with_index do |doc, i|
     5.times do
+      date = DateTime.new(2023,9,rand(1..6),13 + i)
       appointment = Appointment.create!( location_id: Location.all.first.id,
         additional_details: "details",
         symptoms: "broken hand",
-        start_time: "#{13 + i}:00",
-        end_time: "#{13 + i}:30",
+        start_time: date,
+        end_time: DateTime.new(date.year,date.month,date.day,13 + i + 0.5),
         status: 0,
         patient_id: ai.id,
         doctor_id: doc.id,
@@ -348,38 +349,3 @@ specialty_procedures.each do |specialty, procedures|
     end
   end
 end
-
-# create appointment
-# create reviews
-puts "seeding a DUMMY appointment"
-first_appointment = Appointment.create!( location_id: Location.all.first.id,
-                  additional_details: "details",
-                  symptoms: "headache",
-                  start_time: "12:00",
-                  end_time: "12:30",
-                  status: 0,
-                  patient_id: miguel.id,
-                  doctor_id: User.last.id,
-                )
-
-Review.create!(
-              appointment_id: first_appointment.id,
-              rating: 5,
-              comment: "Lovley doctor" )
-
-
-# t.bigint "location_id", null: false
-# t.text "additional_details"
-# t.string "symptoms"
-# t.time "start_time"
-# t.time "end_time"
-# t.integer "status", default: 0
-# t.bigint "patient_id"
-# t.bigint "doctor_id"
-# t.datetime "created_at", null: false
-# t.datetime "updated_at", null: false
-# t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
-# t.index ["location_id"], name: "index_appointments_on_location_id"
-# t.index ["patient_id"], name: "index_appointments_on_patient_id"
-
-# puts "Seeding completed. Thank you for your patient ;-) "
