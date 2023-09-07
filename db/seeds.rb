@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "faker"
 
+
 puts "Cleaning all DB's (Locations, Procedures and Users)"
 Procedure.destroy_all
 Review.destroy_all
@@ -179,7 +180,73 @@ doctor_img = [
   "https://th.bing.com/th/id/OIP.D_1Wk3dvLUAtJF613RDvOgHaJq?w=126&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
   "https://th.bing.com/th/id/OIP.w7n8avrG7JtLrgHJwognEgHaLD?w=120&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
   "https://th.bing.com/th/id/OIP.E7pgi5ra0OojybzbQmogAwHaFk?w=240&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
-  "https://th.bing.com/th/id/OIP.Xb8F13Umor9qB88wkL9f_gHaIb?pid=ImgDet&w=206&h=235&c=7&dpr=2"
+  "https://th.bing.com/th/id/OIP.Xb8F13Umor9qB88wkL9f_gHaIb?pid=ImgDet&w=206&h=235&c=7&dpr=2",
+
+  "https://img.freepik.com/free-photo/covid-19-coronavirus-outbreak-healthcare-workers-pandemic-concept-enthusiastic-smiling-male-doctor-glad-help-patients-physician-white-coat-happy-working-clinic-hospital_1258-57450.jpg?w=1480&t=st=1694082779~exp=1694083379~hmac=2533c3f85e417d84ded3a3cc18d447d147ad060052fa6cab58fcd05c6f985dca",
+  "https://img.freepik.com/free-photo/doctor-holding-hand-pocket-office_23-2147896185.jpg?size=626&ext=jpg&ga=GA1.2.1737460151.1694081807&semt=ais",
+  "https://img.freepik.com/free-photo/woman-doctor-wearing-lab-robe-with-stethoscope-isolated_1303-29803.jpg?size=626&ext=jpg&ga=GA1.1.1737460151.1694081807&semt=ais",
+  "https://media.istockphoto.com/id/1371998919/photo/cropped-portrait-of-an-attractive-young-female-doctor-giving-thumbs-up-while-working-in-her.jpg?s=612x612&w=0&k=20&c=5oPD2p5gc7ZQjgyjPAJui9eOGKF8sK_GG6MJpYXmA7s=",
+  "https://media.istockphoto.com/id/590242480/photo/the-smile-that-puts-every-patient-at-ease.jpg?s=612x612&w=0&k=20&c=paDwLk3EAqswMydy5QuEk5ipNCNgtfFTPirL6QqtVfM=",
+  "https://media.istockphoto.com/id/1148092269/photo/portrait-of-muti-ethnic-doctors.jpg?s=612x612&w=0&k=20&c=4J494TO40-mG6XUdunJOnZAteUy_qLnDnbOrbj6Wn9M=",
+  "https://media.istockphoto.com/id/1464901013/photo/senior-woman-doctor-and-portrait-smile-for-healthcare-surgery-or-advice-with-stethoscope-for.jpg?s=612x612&w=0&k=20&c=FLDO3rR9GfeqleThi9OK9fcM3rt0-QlNtJMjifVwAWM=",
+  "https://media.istockphoto.com/id/502040635/photo/confident-doctor-with-stethoscope-around-neck.jpg?s=612x612&w=0&k=20&c=ex07ZnkUsytGPx5auvvm3T2DfhQOyR8-ulb-64xnol0=",
+  "https://media.istockphoto.com/id/177289714/photo/smiling-male-medical-doctor-wearing-glasses-coat-and-stethoscope.jpg?s=612x612&w=0&k=20&c=Z0mtmBmY5PQPp57-K1OBnbXJGUnuWTPwFrnQ9Wsvl38=",
+  "https://media.istockphoto.com/id/1407998038/photo/portrait-of-a-beautiful-female-doctor-in-her-office.jpg?s=612x612&w=0&k=20&c=ZorAnx88Hz01n5JTBZOEwAdhJv6uPma2NoHhGWHffaU="
+  ]
+
+  doctor_bio = [
+    "Dedicated Pediatric Neurologist, specializing in young patients' neurological health. Committed to improving children's lives through precise diagnosis and compassionate treatment.",
+    "Accomplished Cardiac Surgeon with decades of experience. Renowned for advanced heart surgeries and commitment to patient care. A leader in cardiovascular medicine.",
+    "Renowned Oncologist making significant contributions to cancer treatment. Compassionate and skilled in diagnosing and treating various cancer types. A pioneer in oncology.",
+    "Innovative Dentist at the forefront of oral health advancements. Providing top-quality dental care and promoting healthy smiles. A trusted expert in the field.",
+    "Global Health Advocate fighting infectious diseases worldwide. Dedicated to public health and epidemic control. A key player in international healthcare efforts.",
+    "Ophthalmology Pioneer advancing eye care with cutting-edge treatments. Expertise in complex eye conditions and vision correction. A leader in ophthalmology.",
+    "Reproductive Health Expert empowering women in healthcare choices. Specializing in gynecology and reproductive endocrinology. Compassionate and experienced.",
+    "Leading Psychiatrist with a profound impact on mental health. Expert in psychiatric care and therapy. A trusted figure in the field of psychiatry.",
+    "Pediatric Cardiology Pioneer enhancing young hearts' well-being. Expertise in diagnosing and treating pediatric heart conditions. A champion for child health.",
+    "Renowned Sports Medicine Specialist dedicated to athletes' well-being. Expert in sports-related injuries and performance optimization. A trusted advisor in sports medicine.",
+    "Pioneer in Pediatric Oncology, advancing cancer care for children. Specialized in pediatric oncology, providing hope and healing. A dedicated advocate for young patients.",
+    "Expert in Geriatric Medicine, specializing in elderly care. Comprehensive approach to senior health and well-being. A trusted advocate for the elderly population.",
+    "Dermatology Trailblazer in skincare and dermatological research. Expertise in skin health and innovative treatments. A recognized authority in dermatology.",
+    "Visionary in Neurosurgery, known for groundbreaking treatments. Expertise in complex neurological conditions and surgeries. A leader in neurosurgical care.",
+    "Leader in Infectious Disease Control, safeguarding public health. Expertise in epidemiology and disease prevention. A trusted authority in infectious diseases.",
+    "Pioneer in Gastroenterology, advancing digestive health. Expertise in gastrointestinal disorders and treatments. A leader in the field of gastroenterology.",
+    "Expert in Allergy and Immunology, specializing in immune system disorders. Expertise in diagnosing and managing allergies and immunological conditions.",
+    "Leader in Emergency Medicine, specializing in critical care. Rapid assessment and treatment of medical emergencies, saving lives. A trusted figure in emergency medicine.",
+    "Pioneer in Integrative Medicine, blending healthcare approaches. Expertise in holistic health and personalized care. A respected authority in integrative medicine.",
+    "Nephrologist specializing in kidney care. Dedicated to renal health and disease management. A trusted expert in nephrology.",
+    "Plastic Surgeon enhancing appearance and confidence. Renowned for aesthetic procedures and surgical expertise. A trusted figure in plastic surgery.",
+    "Orthopedic Surgeon specializing in musculoskeletal conditions. Expertise in diagnosing and treating orthopedic injuries and disorders. A leader in orthopedics.",
+    "Gynecologist focusing on women's health. Comprehensive care and support for women's unique healthcare needs. A trusted advocate for women's health.",
+    "Rheumatologist specializing in autoimmune disorders. Expertise in diagnosing and managing rheumatic diseases. A trusted figure in rheumatology.",
+    "Hematologist-Oncologist in blood cancer care. Dedicated to cancer diagnosis and treatment. A leader in hematology-oncology.",
+    "Radiologist using imaging for precise diagnosis. Expert in medical imaging techniques and interpretations. A trusted authority in radiology.",
+    "Urologist treating urinary tract conditions. Expertise in urological health and surgical procedures. A trusted figure in urology.",
+    "Pulmonologist for respiratory health. Comprehensive care for respiratory conditions and lung diseases. A respected authority in pulmonology.",
+    "Endocrinologist managing hormone disorders. Expertise in hormonal health and treatments. A trusted figure in endocrinology.",
+    "Neonatologist caring for newborns. Specialized in neonatal care and infant health. A dedicated advocate for newborns and their families.",
+    "Psychosomatic Medicine Specialist in mind-body health. Holistic approach to mental and physical well-being. A trusted expert in psychosomatic medicine.",
+    "Infectious Disease Specialist for infections. Expertise in diagnosing and treating infectious diseases. A trusted authority in infectious disease care.",
+    "Hepatologist specializing in liver diseases. Comprehensive care for liver conditions and liver transplantation. A respected figure in hepatology.",
+    "Family Medicine Practitioner providing comprehensive care. Trusted for primary healthcare needs and preventive medicine. A pillar of family medicine.",
+    "Neurologist for neurological disorders. Expertise in diagnosing and managing neurological conditions. A trusted figure in neurology.",
+    "Interventional Cardiologist performing advanced heart procedures. Expertise in cardiac interventions and cardiovascular care. A leader in cardiology.",
+    "Clinical Geneticist diagnosing genetic conditions. Expertise in genetic disorders and counseling. A trusted authority in clinical genetics.",
+    "Rheumatology Fellow researching autoimmune diseases. Dedicated to advancing rheumatic disease knowledge and treatment. A rising star in rheumatology research.",
+    "Gastrointestinal Surgeon specializing in GI surgery. Expertise in complex gastrointestinal surgeries. A trusted figure in gastrointestinal surgery.",
+    "Pain Management Specialist alleviating chronic pain. Expertise in pain diagnosis and treatment. A compassionate advocate for pain relief.",
+    "Neuro-Oncologist treating brain cancers. Expertise in diagnosing and treating brain tumors. A dedicated champion for brain cancer patients.",
+    "Thoracic Surgeon focusing on chest surgery. Expertise in thoracic surgeries and treatments. A trusted figure in thoracic surgery.",
+    "Intensive Care Physician providing critical care. Skilled in managing critically ill patients and life-saving interventions. A compassionate leader in critical care.",
+    "Vascular Surgeon for circulatory conditions. Expertise in vascular surgeries and interventions. A trusted authority in vascular surgery.",
+    "Dental Surgeon performing oral surgeries. Renowned for dental surgical procedures and expertise. A trusted figure in dental surgery.",
+    "Plastic Surgery Fellow specializing in cosmetic procedures. Dedicated to aesthetic enhancements and patient satisfaction. A rising star in plastic surgery.",
+    "Child Psychiatrist supporting young mental health. Expert in child and adolescent psychiatry. A compassionate advocate for young patients' well-being.",
+    "Pediatric Anesthesiologist ensuring pain-free surgeries. Expertise in pediatric anesthesia and pain management. A trusted figure in pediatric anesthesiology.",
+    "Dermatopathologist diagnosing complex skin diseases. Expert in dermatopathology and precise diagnostics. A trusted authority in dermatopathology.",
+    "Neurological Surgeon performing complex brain surgeries. Expertise in intricate neurological procedures. A leader in neurological surgery.",
+    "Trauma Surgeon for critical injuries. Specialized in trauma care and life-saving surgeries. A trusted figure in trauma surgery.",
+    "Virologist studying viruses and infections. Expertise in virology research and infectious"
   ]
 
 
@@ -195,7 +262,7 @@ puts ".....Hospitals created. Creating Doctors....."
   User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    bio: Faker::Lorem.sentence,
+    bio: doctor_bio.sample,
     phone_number: Faker::PhoneNumber.cell_phone,
     image_url: doctor_img.sample,
     specialty: specialties.sample,
@@ -211,6 +278,7 @@ puts ".....Hospitals created. Creating Doctors....."
   shuffled_locations.take(3).each do |location|
     DoctorsLocation.create!(user_id: User.last.id, location_id: location.id)
   end
+
 
 
   appointment = Appointment.create!( location_id: Location.all.first.id,
