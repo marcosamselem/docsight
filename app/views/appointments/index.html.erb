@@ -1,34 +1,39 @@
-<div class="container bgrnd-col my-5">
+<div class="mrgn-x bgrnd-col my-5">
   <div class="text-center marg-bot">
     <h1><u>My appointments</u></h1>
   </div>
   <h3>Upcoming appointments</h3>
-  <% @appointments.each do |appointment| %>
-    <div class="mt-3 hr">
+  <div>
+    <% @appointments.sort_by(&:start_time).each do |appointment| %>
       <% if Time.now < appointment.start_time %>
-        <div class="bcg-col d-flex">
+        <div class="bcg-col p-3 hr d-flex justify-content-between">
           <div class="px-3 pt-3">
             <u>Appointment with:</u>
             <strong><p>Dr. <%= appointment.doctor.first_name %> <%=appointment.doctor.last_name%></p></strong>
             <u>Location is:</u>
             <p><%= appointment.location.address %></p>
             <u>Appointment date:</u>
-            <p><%= appointment.start_time %></p>
+            <p><%= appointment.start_time.strftime("%a %e %b, %l %p") %></p>
             <u>Patient's symptoms:</u>
             <p><%= appointment.symptoms %></p>
-          </div >
-          <div class="ms-5 mid-alignment">
-            <%=link_to user_path(appointment.doctor) do %>
-              <div class="btn btn-primary chng-color butt-style marg-change">
-              <span class="col-text">Book again with <%=appointment.doctor.first_name%></span>
-            <%end%>
+          </div>
+                  <div class="mid-alignment">
+                <%= link_to appointment_path(appointment),
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                  <i class="fa-solid fa-circle-xmark fa-xl"></i>
+                  <% end %>
+
+                <%=link_to user_path(appointment.doctor) do %>
+                  <div class="btn btn-primary chng-color butt-style mrgintop marg-change">
+                    <span    class="col-text">Book again with <%=appointment.doctor.first_name%></span>
+                  </div>
+                <%end%>
           </div>
         </div>
-      <%end%>
-    </div>
-  <%end%>
 
-<div class="container bgrnd-col mrg-20">
+      <%end%>
+    <%end%>
+
   <h3>Previous appointments</h3>
   <% @appointments.each do |appointment| %>
       <% if Time.now > appointment.start_time %>
@@ -40,11 +45,11 @@
             <u>Location is:</u>
             <p><%= appointment.location.address %></p>
             <u>Appointment date:</u>
-            <p><%= appointment.start_time %></p>
+            <p><%= appointment.start_time.strftime("%a %e %b, %l %p") %></p>
             <u>Patient's symptoms:</u>
             <p><%= appointment.symptoms %></p>
           </div >
-          <div class="ms-5 mid-alignment">
+          <div class="ms-5 mrgintop mid-alignment">
             <%=link_to user_path(appointment.doctor) do %>
               <div class="btn btn-primary chng-color butt-style marg-change">
               <span class="col-text">Book again with <%=appointment.doctor.first_name%></span>

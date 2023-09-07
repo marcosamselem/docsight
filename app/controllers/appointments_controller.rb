@@ -34,6 +34,12 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
+  def destroy
+  @appointment = Appointment.find(params[:id])
+  @appointment.destroy
+  redirect_to appointments_path, status: :see_other
+  end
+
   private
 
   def set_doctor
