@@ -1,6 +1,6 @@
 
 
-<div class="body">
+<div class="body-container">
   <div class="bio-reviews-container">
     <div class="show-page-card align-items-center">
       <div class="show-page-photo-card">
@@ -8,13 +8,16 @@
         <h2>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></h2>
         <% unless @reviews.empty? %>
           <% review_avg = 0 %>
+          <% counter = 0 %>
           <p><% @reviews.each do |review| %>
               <% review_avg += review.rating %>
+               <% counter += 1 %>
             <% end %>
             <% (review_avg / @reviews.length).times do  %>
               <i class="fa-solid fa-star fa-lg" style="color: #ffb503;"></i>
             <% end %>
           </p>
+          <span style="font-size: 12px">(<%= counter %> reviews)</span>
         <% else %>
           <p>
             No reviews yet
@@ -78,29 +81,11 @@
       <div class="inside">
         <% @doctor.locations.each do |location| %>
           <i class="fa-solid fa-house-medical fa-lg" style="color: #4a4e69;"></i>
-          <%= location.name %>
+          <%= location.name %><span>: </span>
           <%= location.address %> <br><br>
         <% end %>
       </div>
     </div>
-
-    <%# ---------REVIEW CARD----START------------ %>
-    <div class="review-card">
-      <p class="title"><b>Reviews</b></p>
-
-      <div class="inside">
-        <% @reviews.each do |review| %>
-          <%# <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
-          <p> Rating :
-            <%  review.rating.to_i.times do  %>
-              <i class="fa-solid fa-star fa-beat" style="color: #ffb503;"></i>
-            <% end %>
-          </p>
-          <p>Comment : <%= review.comment %></p>
-        <% end %>
-      </div>
-    </div>
-    <%# ---------REVIEW CARD----END------------ %>
   </div>
 
   <div class="map-price-container">
@@ -125,7 +110,7 @@
     </div>
 
     <%# --------MAP----DIV BELOW------------- %>
-    <div class="sticky bord-rad shadow" style="width: 100%; height: 400px;"
+    <div class="sticky bord-rad shadow" style="width: 100%; height: 560px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -133,38 +118,34 @@
     <%# -------------MAP----DIV-----END------------- %>
   </div>
 </div>
-<%# <div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+
+
+
+<div id="carouselExampleAutoplaying" class="carousel slide mb-5 px-3" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active d-flex">
-
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item active d-flex">
-
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item active d-flex">
-
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
-    </div>
+    <% @reviews.each_slice(3).with_index do |review_group, i| %>
+      <div class="carousel-item <%= i == 0 ? "active" : "" %>">
+        <div class="d-flex justify-content-between px-3">
+          <% review_group.each do |review| %>
+            <div class="card-review m-2">
+              <p> Rating:
+                <% review.rating.to_i.times do %>
+                  <i class="fa-solid fa-star fa-beat" style="color: #ffb503;"></i>
+                <% end %>
+              </p>
+              <p><%= review.comment %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</div> %>
+</div>
