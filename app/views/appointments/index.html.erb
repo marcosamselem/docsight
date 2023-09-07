@@ -10,12 +10,12 @@
           <div class="px-3 pt-3">
             <u>Appointment with:</u>
             <strong><p>Dr. <%= appointment.doctor.first_name %> <%=appointment.doctor.last_name%></p></strong>
-            <u>Location is:</u>
-            <p><%= appointment.location.address %></p>
+            <u>Location:</u>
+            <strong><p><%= appointment.location.address %></p></strong>
             <u>Appointment date:</u>
-            <p><%= appointment.start_time.strftime("%a %e %b, %l %p") %></p>
+            <strong><p><%= appointment.start_time.strftime("%a %e %b, %l %p") %></p></strong>
             <u>Patient's symptoms:</u>
-            <p><%= appointment.symptoms %></p>
+            <strong><p><%= appointment.symptoms %></p></strong>
           </div>
                   <div class="mid-alignment">
                 <%= link_to appointment_path(appointment),
@@ -42,12 +42,12 @@
           <div class="px-3 pt-3">
             <u>Appointment with:</u>
             <strong><p>Dr. <%= appointment.doctor.first_name %> <%=appointment.doctor.last_name%></p></strong>
-            <u>Location is:</u>
-            <p><%= appointment.location.address %></p>
+            <u>Location:</u>
+            <strong><p><%= appointment.location.address %></p></strong>
             <u>Appointment date:</u>
-            <p><%= appointment.start_time.strftime("%a %e %b, %l %p") %></p>
+            <strong><p><%= appointment.start_time.strftime("%a %e %b, %l %p") %></p></strong>
             <u>Patient's symptoms:</u>
-            <p><%= appointment.symptoms %></p>
+            <strong><p><%= appointment.symptoms %></p></strong>
           </div >
           <div class="ms-5 mrgintop mid-alignment">
             <%=link_to user_path(appointment.doctor) do %>
