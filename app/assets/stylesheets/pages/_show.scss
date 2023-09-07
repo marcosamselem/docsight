@@ -1,7 +1,9 @@
-// Flexing the Container that has Map and Doctor's cards
-.flexbox-wrapper {
+.body {
   display: flex;
+  width: 98vw;
+  margin: 1rem auto;
 }
+
 
 // Just for the Map
 .sticky {
@@ -9,19 +11,20 @@
   position: sticky;
   top: 0;
   align-self: flex-start;
-  // background-color: red;
-  margin-left: 20px;
 }
 
 // Card of Doctor picture and Schedule
 .show-page-card {
   overflow: auto;
   width: 820px;
-  height: 1000px;
-  background: #DDDDDD;
+  height: 400px;
+  // height: 1000px;
+  background: $secondary-color;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
+  gap: 25px;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .title {
@@ -30,16 +33,20 @@
 
 // Container of Card profile picture and name
 .show-page-photo-card{
+  height: 100%;
   width: 200px;
-  // height: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 10px;
-  background-color: #DDDDDD;
-  margin-left: 20px;
+  background-color: $secondary-color;
   text-align: center;
+  gap: 10px;
   img {
-    width: 144px;
-    height: 113px;
-
+    border-radius: 5px;
+    width: 200px;
+    height: 150px;
   }
 
   h2 {
@@ -60,7 +67,7 @@
     overflow: auto;
     width: 820px;
     height: auto;
-    background: #DDDDDD;
+    background: $secondary-color;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     // display: flex;
   //  flex-direction: column;
@@ -89,9 +96,9 @@
 
   .price-card {
     overflow: auto;
-    width: 820px;
+    // width: 820px;
     height: auto;
-    background: #DDDDDD;
+    background: $secondary-color;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     padding: 5px;
     // display: flex;
@@ -110,7 +117,7 @@
       // margin: 30px 20px 20px 20px;
     }
     .table > :not(caption) > * > * {
-      background-color: #DDDDDD;
+      background-color: $secondary-color;
     }
 
   }
@@ -119,7 +126,7 @@
     overflow: auto;
     width: 820px;
     height: auto;
-    background: #DDDDDD;
+    background: $secondary-color;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     // display: flex;
   //  flex-direction: column;
@@ -141,7 +148,7 @@
     overflow: auto;
     width: 820px;
     height: auto;
-    background: #DDDDDD;
+    background: $secondary-color;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     // display: flex;
   //  flex-direction: column;
@@ -166,7 +173,7 @@
   overflow: hidden;
   width: 820px;
   height: auto;
-  background: #DDDDDD;
+  background: $secondary-color;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   // display: flex;
 //  flex-direction: column;
@@ -199,14 +206,16 @@
 
 .calendar {
   width: 100%;
-  margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .calendar-wrapper {
   display: flex;
 }
 
-#exampleModal {
-  background-color: rgba(0, 0, 0, 0.5); /* Set the background color with opacity */
+// #exampleModal {
+//   background-color: rgba(0, 0, 0, 0.5); /* Set the background color with opacity */
+// }
+
+.map-price-container {
+  margin: 0px 20px;
 }
