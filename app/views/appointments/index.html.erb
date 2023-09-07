@@ -49,13 +49,15 @@
             <u>Patient's symptoms:</u>
             <strong><p><%= appointment.symptoms %></p></strong>
           </div >
-          <div class="ms-5 mrgintop mid-alignment">
+          <div class="ms-5 mrgintop align-items-center mid-alignment">
             <%=link_to user_path(appointment.doctor) do %>
               <div class="btn btn-primary chng-color butt-style marg-change">
               <span class="col-text">Book again with <%=appointment.doctor.first_name%></span>
             <%end%>
+              </div>
+            <%= link_to "Leave a review", new_appointment_review_path(appointment), class: "sec-bttn p-2 px-3" %>
           </div>
-        </div>
+
       <%end%>
     </div>
   <% end %>

@@ -23,10 +23,10 @@
 }
 
 .chng-color{
-  opacity: 1;
+  opacity: .9;
 }
 .chng-color:hover {
-  opacity: .7;
+  opacity: 1;
 }
 
 .bgrnd-col {
@@ -52,6 +52,7 @@
   // background-color: #F2E9E4;
   background-image: linear-gradient(#f4eae5, #f2e6e2);
   border-radius: 15px;
+  box-shadow: 0px 0px 14px #C9ADA7;
 }
 
 .fa-solid.fa-circle-xmark.fa-xl {
@@ -71,4 +72,18 @@
 .mrgintop{
   margin-top: 80px;
   margin-right: 100px;
+}
+
+.sec-bttn {
+  margin-top: 25px;
+  background-color: #746967;
+  border-radius: 25px;
+  opacity: .9;
+  color: white;
+}
+
+
+.sec-bttn:hover{
+  opacity: 1;
+  color: white;
 }
