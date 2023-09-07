@@ -24,7 +24,7 @@ class AppointmentsController < ApplicationController
     @appointment.start_time = Time.new(year, month, day, hour, minute, 0, 0)
     @appointment.end_time = Time.new(year, month, day, hour, minute, 0, 0) + (procedure_duration * 60)
     if @appointment.save
-      redirect_to appointment_path(@appointment)
+      redirect_to appointments_path
     else
       redirect_to user_path(@doctor), status: :unprocessable_entity
     end
