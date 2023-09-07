@@ -19,7 +19,7 @@ puts "Seeding db..."
 User.create!({email: "marcosa@gmail.com", password: "123456", first_name: "Marcos", last_name: "Amselem", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 miguel = User.create!({email: "miguel@gmail.com", password: "123456", first_name: "Miguel", last_name: "Belo", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 User.create!({email: "david@gmail.com", password: "123456", first_name: "David", last_name: "Whitehead", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
-User.create!({email: "ai@gmail.com", password: "123456", first_name: "Ai", last_name: "Miyuki", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "female", past_interventions: "None"})
+ai = User.create!({email: "ai@gmail.com", password: "123456", first_name: "Ai", last_name: "Miyuki", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "female", past_interventions: "None"})
 User.create!({email: "yusuf@gmail.com", password: "123456", first_name: "Yusuf", last_name: "Uras", phone_number: "+4412375637", date_of_birth: "25/12/1969", gender: "male", past_interventions: "None"})
 
 specialties = ["Orthopaedics", "Plastic Surgery", "Otolaryngology", "Ophthalmology", "Obstetrics and gynaecology", "Urology", "Cardiology", "Oncology", "Dermatology", "Paediatrics", "Vascular surgery", "Geriatric medicine", "General Internal medicine", "General Practice", "Gastro-enterology"]
@@ -248,7 +248,29 @@ doctor_img = [
     "Trauma Surgeon for critical injuries. Specialized in trauma care and life-saving surgeries. A trusted figure in trauma surgery.",
     "Virologist studying viruses and infections. Expertise in virology research and infectious"
   ]
+# ------THIS IS A ARRAY OF RATINGS WHICH WE SAMPLE TO BUILD A SEED OF RATINGS FOR ORTHOPAEDIC DOCTORS-----
+  doc_rating = [
+    {rating: 1, comment: "I felt the appointment was a bit rashed and the doctor did not listen."},
+    {rating: 1, comment: "I don't think the doctor listened to me. I will have to find someone else to listen to."},
+    {rating: 1, comment: "They were just rude.But then again maybe I just dont understand what they were saying"},
+    {rating: 2, comment: "Hmm, I'm not sure I will have the operation now."},
+    {rating: 2, comment: "Well it was very rushed and I'm not sur I will go back"},
+    {rating: 2, comment: "I dont agree with what the doctor said to me. They made me cry and the queue for coffee was just too long"},
+    {rating: 3, comment: "Hmm, kind of average. I don't like average doctors"},
+    {rating: 3, comment: "Sorted the problem out at a cost £££"},
+    {rating: 3, comment: "Well I have no more pain anymore..."},
+    {rating: 4, comment: "Hey pretty good. Made me feel like I was being treated well. Doctor drives a nice Tesla"},
+    {rating: 4, comment: "Happy with the consultation. I just wish the coffee was better"},
+    {rating: 4, comment: "I liked the doctors pen it looked pretty expensive. I like the color of my new cast"},
+    {rating: 5, comment: "Wow, how amazing was that! No more pain. This doctor is magic!!!"},
+    {rating: 5, comment: "I just love the way everything worked out. The secretary was super helpful"},
+    {rating: 5, comment: "Not such a great bedside manner but wow my bones are in great shape now"},
+    {rating: 5, comment: "Had a terrible time laughing following an injury while teaching Krav Maga"},
+    {rating: 5, comment: "The doctor was amazing and I now agree that if I continue Krav Maga I will break all my bones"},
+    {rating: 5, comment: "What a fantastic experience. After falling down the stairs at Le Wagon in London I broke my hand"}
 
+  ]
+# ------------------------END-----
 
 HOSPITALS.each do |hosp|
   Location.create!(name: hosp[0], address: hosp[1])
@@ -280,6 +302,37 @@ puts ".....Hospitals created. Creating Doctors....."
   end
 
 
+# -----------------start making appointments--FOR ORTHOPAEDIC DOCTORS ONLY------------
+puts ".....Creating appointments for Ortho 🩻 💀 ....."
+
+ortho_doc = User.where(role: "doctor", specialty: "Orthopaedics")
+
+ortho_doc.each_with_index do |doc, i|
+  5.times do
+    appointment = Appointment.create!( location_id: Location.all.first.id,
+      additional_details: "details",
+      symptoms: "broken hand",
+      start_time: "#{13 + i}:00",
+      end_time: "#{13 + i}:30",
+      status: 0,
+      patient_id: ai.id,
+      doctor_id: doc.id,
+    )
+# ---------------START creating ratings-------------
+puts ".....Creating ratings for Ortho 😷 🤡 ....."
+    doc_rating.sample(5).each do |rating|
+      Review.create!(
+        appointment_id: appointment.id,
+        rating: rating[:rating],
+        comment: rating[:comment]
+      )
+    end
+
+# -------end creating ratings--loop----
+  end
+end
+
+# -------------end making appointments--------------
 
   appointment = Appointment.create!( location_id: Location.all.first.id,
     additional_details: "details",
