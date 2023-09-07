@@ -6,14 +6,20 @@
       <div class="show-page-photo-card">
         <%= image_tag @doctor.image_url%>
         <h2>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></h2>
-        <% review_avg = 0 %>
-        <p><% @reviews.each do |review| %>
-            <% review_avg += review.rating %>
-          <% end %>
-          <% (review_avg / @reviews.length).times do  %>
-            <i class="fa-solid fa-star fa-lg" style="color: #ffb503;"></i>
-          <% end %>
-        </p>
+        <% unless @reviews.empty? %>
+          <% review_avg = 0 %>
+          <p><% @reviews.each do |review| %>
+              <% review_avg += review.rating %>
+            <% end %>
+            <% (review_avg / @reviews.length).times do  %>
+              <i class="fa-solid fa-star fa-lg" style="color: #ffb503;"></i>
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            No reviews yet
+          </p>
+        <% end %>
         <p><strong>Specialty: <%= @doctor.specialty%></strong></p>
       </div>
       <div class="show-page-calendar-card h-100">
