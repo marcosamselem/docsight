@@ -19,8 +19,11 @@ a:hover {
   display: flex;
   align-items: center;
   margin-top: 30px;
-  }
+}
 
+.card-product:hover {
+  background-color: #C9ADA7;
+}
 
 .card-product img {
   height: 100%;
@@ -53,6 +56,8 @@ a:hover {
 
 .marg-right{
   margin-right: 30px;
+  position: sticky;
+  top: 12px;
 }
 
 .bord-rad{
@@ -60,7 +65,7 @@ a:hover {
 }
 
 .back-col{
-  background-color: #C9ADA7;
+  background-color: whitesmoke;
 }
 
 .font-title{
@@ -76,7 +81,20 @@ a:hover {
   object-fit: contain !important;
 }
 
-// last one here
+.info-w-wrapper {
+  background-color: $secondary-color;
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.mapboxgl-popup-content {
+  padding: 0;
 
 .card-review {
   display: flex;

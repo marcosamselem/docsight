@@ -7,7 +7,7 @@
             <%full_name = "#{user.first_name} #{user.last_name}" %>
             <%# ------the whole DIV is now a button taking us to the doctors show page below %>
             <%= link_to user_path(user) do %>
-              <div class="card-product btn bord-rad">
+              <div class="card-product btn bord-rad new-card-bg">
               <%# <%=link_to "see profile", user_path, class: "btn"  %>
                 <div class="shadow bord-rad">
                   <%=image_tag user.image_url, class: "img-size img-thumbnail"%>
@@ -22,7 +22,7 @@
           <% end %>
         </div>
       </div>
-      <div class= "bord-rad shadow marg-right sticky-top my-3" style="width: 600px; height: 600px;"
+      <div class= "bord-rad shadow marg-right my-3" style="width: 600px; height: 600px;"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
