@@ -1,4 +1,48 @@
-.font-c{
+.font-c {
   color: white;
   text-align: center;
+}
+
+.mid-alignment {
+  margin-top: 120px;
+  min-width: 330px;
+  max-width: 330px;
+  margin-right: 0px;
+}
+
+.butt-style {
+  border-radius: 25px;
+}
+
+.marg-bot {
+  margin-top: 70px;
+  margin-bottom: 60px;
+}
+
+.marg-change {
+  padding: 15px;
+}
+
+.chng-color:hover {
+  background-color: #C9ADA7;
+  color: black;
+}
+
+.bgrnd-col {
+  background-color: black;
+}
+
+.col-text {
+  color: white;
+}
+
+.hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+.mrg-20 {
+  margin-top: 70px;
 }
