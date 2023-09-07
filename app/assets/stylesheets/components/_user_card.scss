@@ -75,3 +75,20 @@ a:hover {
   max-width: 150px;
   object-fit: contain !important;
 }
+
+// last one here
+
+.card-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 400px;
+  font-size: 1rem;
+  // font-weight: 600 ;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: $secondary-color;
+}
