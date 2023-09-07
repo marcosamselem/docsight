@@ -14,3 +14,8 @@
 <div>
   <%= link_to "My Dashboard", appointments_path(current_user) %>
 </div>
+
+<%= link_to "Cancel appointment",
+  appointment_path(@appointment),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>

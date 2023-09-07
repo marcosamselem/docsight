@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   # to delete
-  resources :appointments, only: [:show, :index] do
+  resources :appointments, only: [:show, :index, :destroy] do
     resources :reviews, only: [:new, :create]
   end
   # Defines the root path route ("/")

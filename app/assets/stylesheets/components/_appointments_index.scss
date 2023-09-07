@@ -4,10 +4,9 @@
 }
 
 .mid-alignment {
-  margin-top: 120px;
-  min-width: 330px;
-  max-width: 330px;
-  margin-right: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 .butt-style {
@@ -23,9 +22,11 @@
   padding: 15px;
 }
 
+.chng-color{
+  opacity: 1;
+}
 .chng-color:hover {
-  background-color: #C9ADA7;
-  color: black;
+  opacity: .7;
 }
 
 .bgrnd-col {
@@ -45,4 +46,29 @@
 
 .mrg-20 {
   margin-top: 70px;
+}
+
+.bcg-col{
+  // background-color: #F2E9E4;
+  background-image: linear-gradient(#f4eae5, #f2e6e2);
+  border-radius: 15px;
+}
+
+.fa-solid.fa-circle-xmark.fa-xl {
+  opacity: .7;
+}
+
+.fa-solid.fa-circle-xmark.fa-xl:hover {
+  opacity: 1;
+}
+
+.mrgn-x{
+  margin-left: 200px;
+  margin-right: 200px;
+
+}
+
+.mrgintop{
+  margin-top: 80px;
+  margin-right: 100px;
 }
