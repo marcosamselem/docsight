@@ -1,164 +1,164 @@
 
-<div class="container flexbox-wrapper mt-5">
 
-  <div>
-
-  <div class="show-page-card align-items-center">
-    <div class="show-page-photo-card">
-      <%= image_tag @doctor.image_url%>
-      <h2><%= @doctor.first_name %> <%= @doctor.last_name %></h2>
-      <% review_avg = 0 %>
-      <p><% @reviews.each do |review| %>
-          <% review_avg += review.rating %>
-        <% end %>
-        <% (review_avg / @reviews.length).times do  %>
-          <i class="fa-solid fa-star fa-lg" style="color: #ffb503;"></i>
-        <% end %>
-      </p>
-      <p> Specialty: <%= @doctor.specialty%></p>
-    </div>
-    <div class="show-page-calendar-card">
-      <div class="calendar d-flex justify-content-between">
-        <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
-        <%= form_with url: booking_appointment_path(
-          params[:id],
-          appointment_date: params[:appointment_date],
-          procedure_id: params[:procedure_id],
-          ), method: :get do |f| %>
-          <div class="calendar-wrapper">
-            <%= f.text_field :appointment_date,
-              value: params[:appointment_date],
-              class: "form-control",
-              hidden: true,
-              placeholder: "Type a keyword",
-              # The Controller should Listen for a submit and capture the params[:appointment_date]
-              data: { controller: "datepicker" }
-            %>
-            <div class="category-wrapper">
-              <% @doctor.procedures.each do |procedure| %>
-                <div class="category-item">
-                  <%= f.radio_button :procedure_id, procedure.id, class: 'form-check-input radio_buttons required category-selector', data: { style: 'ruby' }, id: "snippet_category_id_#{procedure.id}" %>
-                  <%= f.label "snippet_category_id_#{procedure.id}", procedure.name, class: 'form-check-label collection_radio_buttons' %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <%= submit_tag "Check Availability", class: "btn btn-primary mt-3"%>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="bio-card">
-    <p class="title"><b>Biography </b></p>
-    <div class="inner">
-        <div><p><b>Establishment</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.specialty %></p></div>
-        <div><p><b>Year : ?</b></p></div>
-    </div>
-    <div class="expertise">
-      <p><b>Expertise & Procedures</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.bio %></p>
-    </div>
-  </div>
-
-  <div class="price-card">
-    <p class="title"><b>Pricing</b></p>
-    <div class="inside">
-      <table class="table table-borderless">
-        <tr>
-          <th>Name</th>
-          <th>Cost</th>
-          <th>Duration</th>
-        </tr>
-        <% @doctor.procedures.each do |procedure| %>
-        <tr>
-          <th><%= procedure.name%></th>
-          <th>£ <%= procedure.price %></th>
-          <th><%= procedure.duration %> min</th>
-        </tr>
-        <% end %>
-      </table>
-    </div>
-  </div>
-
-  <div class="location-card">
-    <p class="title"><b>Location</b></p>
-    <div class="inside">
-      <% @doctor.locations.each do |location| %>
-        <i class="fa-solid fa-house-medical fa-lg" style="color: #4a4e69;"></i>
-        <%= location.name %>
-        <%= location.address %> <br><br>
-      <% end %>
-    </div>
-  </div>
-
-  <%# ---------REVIEW CARD----START------------ %>
-  <div class="review-card">
-    <p class="title"><b>Reviews</b></p>
-
-    <div class="inside">
-      <% @reviews.each do |review| %>
-        <%# <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
-        <p> Rating :
-          <%  review.rating.to_i.times do  %>
-            <i class="fa-solid fa-star fa-beat" style="color: #ffb503;"></i>
+<div class="body">
+  <div class="bio-reviews-container">
+    <div class="show-page-card align-items-center">
+      <div class="show-page-photo-card">
+        <%= image_tag @doctor.image_url%>
+        <h2>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></h2>
+        <% review_avg = 0 %>
+        <p><% @reviews.each do |review| %>
+            <% review_avg += review.rating %>
+          <% end %>
+          <% (review_avg / @reviews.length).times do  %>
+            <i class="fa-solid fa-star fa-lg" style="color: #ffb503;"></i>
           <% end %>
         </p>
-        <p>Comment : <%= review.comment %></p>
-      <% end %>
-    </div>
-  </div>
-  <%# ---------REVIEW CARD----END------------ %>
-
-  <%# --------MAP----DIV BELOW------------- %>
-  <div class="sticky bord-rad shadow mb-5" style="width: 100%; height: 400px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-  <%# -------------MAP----DIV-----END------------- %>
-
-
-
-
-  <!-- Modal -->
-  <div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body d-flex">
-          <div class="show-page-photo-card mx-3">
-            <%= image_tag @doctor.image_url %>
-            <h2 class="my-3"><strong>Dr.<%= @doctor.first_name %> <%= @doctor.last_name %></strong></h2>
-            <h2><%= @doctor.specialty %></h2>
-          </div>
-          <div>
-            <h5>Summary:</h5>
-            <% if params[:procedure_id] %>
-              <ul>
-                <li>Appointment for: <%= @real_procedure.name %></li>
-                <li>Duration: <%= @real_procedure.duration%> minutes</li>
-                <li>Cost: £<%= number_with_delimiter(@real_procedure.price)%></li>
-              </ul>
-            <% end %>
-          </div>
-        </div>
-        <div class="modal-body border-top">
-          <%= simple_form_for [@doctor, @appointment] do |f| %>
-            <%= f.input :start_time, as: :time, html5: true, input_html: { value: @date } %>
-            <%# <%= f.input :end_time, as: :time, html5: true, input_html: { value: @date } %>
-            <%= hidden_field_tag 'date', @date %>
-            <%= hidden_field_tag 'procedure', @procedure %>
-            <%= hidden_field_tag 'doctor_appointments', @doctor_appointments %>
-            <%= f.input :symptoms %>
-            <%= f.input :additional_details %>
-            <%= f.submit "Checkout", class: "btn btn-primary" %>
+        <p><strong>Specialty: <%= @doctor.specialty%></strong></p>
+      </div>
+      <div class="show-page-calendar-card h-100">
+        <div class="calendar d-flex justify-content-between">
+          <%# <input type="text" placeholder="Select Date.." data-controller="datepicker"> %>
+          <%= form_with url: booking_appointment_path(
+            params[:id],
+            appointment_date: params[:appointment_date],
+            procedure_id: params[:procedure_id],
+            ), method: :get do |f| %>
+            <div class="calendar-wrapper">
+              <%= f.text_field :appointment_date,
+                value: params[:appointment_date],
+                class: "form-control",
+                hidden: true,
+                placeholder: "Type a keyword",
+                # The Controller should Listen for a submit and capture the params[:appointment_date]
+                data: { controller: "datepicker" }
+              %>
+              <div class="category-wrapper p-2">
+                <h5 class="text-center mb-2">Select your procedure:</h5>
+                <div class="category-grid">
+                  <% @doctor.procedures.each do |procedure| %>
+                    <div class="category-item">
+                      <%= f.radio_button :procedure_id, procedure.id, class: 'form-check-input radio_buttons required category-selector', data: { style: 'ruby' }, id: "snippet_category_id_#{procedure.id}" %>
+                      <%= f.label "snippet_category_id_#{procedure.id}", procedure.name, class: 'form-check-label collection_radio_buttons' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <%= submit_tag "Check Availability", class: "btn btn-primary m-3" %>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
+
+
+
+    <div class="bio-card">
+      <p class="title"><b>Biography </b></p>
+      <div class="inner">
+          <div><p><b>Establishment</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.specialty %></p></div>
+          <div><p><b>Year : ?</b></p></div>
+      </div>
+      <div class="expertise">
+        <p><b>Expertise & Procedures</b><br><i class="fa-solid fa-user-doctor fa-lg" style="color: #4a4e69;"></i> <%= @doctor.bio %></p>
+      </div>
+    </div>
+
+
+    <div class="location-card">
+      <p class="title"><b>Location</b></p>
+      <div class="inside">
+        <% @doctor.locations.each do |location| %>
+          <i class="fa-solid fa-house-medical fa-lg" style="color: #4a4e69;"></i>
+          <%= location.name %>
+          <%= location.address %> <br><br>
+        <% end %>
+      </div>
+    </div>
+
+    <%# ---------REVIEW CARD----START------------ %>
+    <div class="review-card">
+      <p class="title"><b>Reviews</b></p>
+
+      <div class="inside">
+        <% @reviews.each do |review| %>
+          <%# <p><i class="fa-solid fa-star fa-lg" style="color: #4a4e69;"></i> Rating : <%= review.rating %></p>
+          <p> Rating :
+            <%  review.rating.to_i.times do  %>
+              <i class="fa-solid fa-star fa-beat" style="color: #ffb503;"></i>
+            <% end %>
+          </p>
+          <p>Comment : <%= review.comment %></p>
+        <% end %>
+      </div>
+    </div>
+    <%# ---------REVIEW CARD----END------------ %>
+  </div>
+
+  <div class="map-price-container">
+    <div class="price-card">
+      <p class="title"><b>Pricing</b></p>
+      <div class="inside">
+        <table class="table table-borderless">
+          <tr>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Duration</th>
+          </tr>
+          <% @doctor.procedures.each do |procedure| %>
+          <tr>
+            <th><%= procedure.name%></th>
+            <th>£ <%= procedure.price %></th>
+            <th><%= procedure.duration %> min</th>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+    <%# --------MAP----DIV BELOW------------- %>
+    <div class="sticky bord-rad shadow" style="width: 100%; height: 400px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+    <%# -------------MAP----DIV-----END------------- %>
+  </div>
 </div>
+<%# <div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active d-flex">
+
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item active d-flex">
+
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item active d-flex">
+
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+      <img src="https://picsum.photos/200/300" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> %>
