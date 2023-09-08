@@ -1,5 +1,9 @@
  <div class="back-col">
-  <h1 class= "text-center font-title">Select your prefered doctor</h1>
+  <% if @specialty.present? %>
+    <h1 class= "text-center font-title">Select your prefered doctor for <%= @specialty.downcase %></h1>
+  <% else %>
+    <h1 class= "text-center font-title">Select your prefered doctor</h1>
+  <% end %>
   <div class="d-flex">
       <div class="container disposition d-flex">
         <div class="wrapmrgn">
